@@ -10,6 +10,19 @@ Die Idee entstand aus einer einfachen Unannehmlichkeit: Um die Verbindung zu pr�
 
 Die kompakte Anzeige zeigt Verbindungsdetails sowie Blast-FPS, Antwortzeit (RTT) und Uplink-Paketverlust. Live-Zähler werden standardmässig jede Sekunde aktualisiert. Die transparente Anzeige liegt unten rechts auf dem primären Desktop unter normalen Anwendungsfenstern. Das Hintergrundbild bleibt erhalten und wird nicht bei jeder Aktualisierung neu geschrieben.
 
+## Im Einsatz
+
+<p align="center"><img src="assets/screenshot-desktop.png" alt="Blast Pulse unten rechts auf einem Windows-Desktop neben einem Videofenster" width="1100"></p>
+
+Beispielsitzung während der Videowiedergabe. Messwerte und Log-Zeitstempel unterscheiden sich je nach Sitzung.
+
+<details>
+<summary>Verbindungsdetails — Nahaufnahme</summary>
+
+<p align="center"><img src="assets/screenshot-details.png" alt="Nahaufnahme von Blast Pulse mit Codec, Aufnahmeverfahren, Bildschirmkonfiguration, Transport, Qualität, FPS, RTT und Paketverlust" width="640"></p>
+
+</details>
+
 ## Herunterladen und starten
 
 [Blast Pulse 1.0 für Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse-1.0.0-win-x64.zip) herunterladen. Das Paket enthält die Anwendung, eine Beispielkonfiguration und die Dokumentation auf Englisch und Deutsch. Zum Offline-Lesen das ZIP entpacken und `README.html` im Browser öffnen; die Links English/Deutsch oben wechseln die Sprache.

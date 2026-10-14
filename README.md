@@ -10,6 +10,19 @@ The idea came from a simple inconvenience: checking a connection meant repeatedl
 
 The compact display shows connection details alongside Blast FPS, round-trip time (RTT) and uplink packet loss. Live counters refresh every second by default. It appears as a transparent layer at the bottom right of the primary desktop, beneath ordinary application windows. Your wallpaper remains the background; it is not rewritten for each update.
 
+## In action
+
+<p align="center"><img src="assets/screenshot-desktop.png" alt="Blast Pulse in the bottom-right corner of a Windows desktop alongside a video window" width="1100"></p>
+
+Example session during video playback. Metrics and log timestamps vary by session.
+
+<details>
+<summary>Connection details — close-up</summary>
+
+<p align="center"><img src="assets/screenshot-details.png" alt="Close-up of Blast Pulse showing codec, capture method, display configuration, transport, quality, FPS, RTT and packet loss" width="640"></p>
+
+</details>
+
 ## Download and start
 
 Download [Blast Pulse 1.0 for Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse-1.0.0-win-x64.zip). The package contains the application, an example configuration and English/German documentation. For offline reading, extract the ZIP and open `README.html` in your browser; use the English/Deutsch links at the top to change language.
