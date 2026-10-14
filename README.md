@@ -1,8 +1,11 @@
-# Blast Pulse - by Stefan Gourguis - Omnissa Tech Insider
-
-[English](https://github.com/vmmachina/blastpulse/blob/main/README.md) | [Deutsch](https://github.com/vmmachina/blastpulse/blob/main/README.de.md)
-
-Horizon Blast connection details, visible at a glance on your desktop.
+<div align="center">
+<h1>BlastPulse</h1>
+<p><strong>Horizon Blast connection details, visible at a glance on your desktop.</strong></p>
+<p>by <strong>Stefan Gourguis</strong> · Omnissa Tech Insider</p>
+<p><kbd>Version 1.0</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.x</kbd></p>
+<p><a href="https://github.com/vmmachina/blastpulse/blob/main/README.md"><kbd>English</kbd></a> | <a href="https://github.com/vmmachina/blastpulse/blob/main/README.de.md"><kbd>Deutsch</kbd></a></p>
+<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse.exe"><strong>↓ Download EXE</strong></a> &nbsp; · &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse-1.0.0-win-x64.zip"><strong>↓ Download Windows ZIP</strong></a></p>
+</div>
 
 This repository provides the ready-to-run releases and user documentation. Application source code is not distributed here. Download the Windows ZIP or EXE linked below.
 
