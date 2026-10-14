@@ -1,4 +1,4 @@
-# Blast Pulse - by Stefan Gourguis - Omnissa Tech Insider 
+# Blast Pulse - by Stefan Gourguis - Omnissa Tech Insider
 
 [English](https://github.com/vmmachina/blastpulse/blob/main/README.md) | [Deutsch](https://github.com/vmmachina/blastpulse/blob/main/README.de.md)
 
