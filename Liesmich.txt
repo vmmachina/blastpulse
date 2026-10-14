@@ -5,7 +5,7 @@ Horizon-Blast-Verbindungsdaten direkt auf dem Desktop im Blick.
 
 Die Idee: Statt immer wieder das ursprüngliche Horizon-Blast-Symbol unten
 rechts zu öffnen, sollen die relevanten Angaben auf dem Desktop sichtbar
-bleiben. BlastPulse zeigt Verbindungsdetails, Blast-FPS, RTT und Paketverlust
+bleiben. Blast Pulse zeigt Verbindungsdetails, Blast-FPS, RTT und Paketverlust
 als transparente Live-Anzeige unter normalen Anwendungsfenstern.
 
 Start
@@ -17,12 +17,12 @@ Bedienung
   Rechtsklick auf das BlastPulse-Symbol neben der Uhr:
   - Language/Sprache -> English / Deutsch
   - Desktop-Anzeige ausblenden/einblenden
-  - BlastPulse beenden
+  - Blast Pulse beenden
   Englisch ist voreingestellt. Die Sprachwahl gilt sofort und bleibt gespeichert.
 
 Anzeige anpassen
   Die optionale config.json liegt neben BlastPulse.exe. Nach Änderungen
-  BlastPulse neu starten. Standardwerte:
+  Blast Pulse neu starten. Standardwerte:
   RefreshSeconds=1, LogRefreshSeconds=5, PanelWidth=640, Margin=30,
   BottomOffset=150, FontSize=11, FontFamily="Segoe UI", Language="en".
   BottomOffset lässt Platz für BGInfo. Für eine kompakte Anzeige unmittelbar
@@ -40,7 +40,7 @@ Start bei der Anmeldung
   start "" "\\example.com\SYSVOL\example.com\scripts\BlastPulse\BlastPulse.exe"
   Den Beispielpfad ersetzen. Die Anwendung richtet selbst keinen Autostart ein.
   Das Skript darf nicht auf das Ende des dauerhaft laufenden Programms warten.
-  Beim Update BlastPulse beenden, EXE ersetzen, eigene config.json behalten
+  Beim Update Blast Pulse beenden, EXE ersetzen, eigene config.json behalten
   und erneut starten.
 
 Datenquellen und Bedeutung
@@ -52,7 +52,7 @@ Datenquellen und Bedeutung
 
   Qualität und Transport stimmen nicht garantiert mit der aktuellen Anzeige
   des ursprünglichen Horizon-Tray-Tools überein: Sie benötigen einen passenden
-  Logeintrag, den Horizon nicht zwingend laufend schreibt. BlastPulse löst
+  Logeintrag, den Horizon nicht zwingend laufend schreibt. Blast Pulse löst
   dessen Aktualisierung nicht selbst aus. Ohne passenden Eintrag erscheint
   "Nicht gemeldet". Einträge über 90 Sekunden werden als älter gekennzeichnet;
   eine unerkannte Logzeit wird separat angezeigt. Keine eigene Ersatzbewertung.
