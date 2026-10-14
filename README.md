@@ -7,8 +7,6 @@
 <p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse.exe"><strong>↓ Download EXE</strong></a> &nbsp; · &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse-1.0.0-win-x64.zip"><strong>↓ Download Windows ZIP</strong></a></p>
 </div>
 
-This repository provides the ready-to-run releases and user documentation. Application source code is not distributed here. Download the Windows ZIP or EXE linked below.
-
 The idea came from a simple inconvenience: checking a connection meant repeatedly opening the original Horizon Blast tray icon at the bottom right of the screen. BlastPulse keeps the relevant information visible on the desktop, so you can follow your session while you work.
 
 The compact display shows connection details alongside Blast FPS, round-trip time (RTT) and uplink packet loss. Live counters refresh every second by default. It appears as a transparent layer at the bottom right of the primary desktop, beneath ordinary application windows. Your wallpaper remains the background; it is not rewritten for each update.
