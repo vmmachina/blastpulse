@@ -1,0 +1,73 @@
+Blast Pulse - by Stefan Gourguis
+Version 1.0
+
+Horizon-Blast-Verbindungsdaten direkt auf dem Desktop im Blick.
+
+Die Idee: Statt immer wieder das ursprüngliche Horizon-Blast-Symbol unten
+rechts zu öffnen, sollen die relevanten Angaben auf dem Desktop sichtbar
+bleiben. BlastPulse zeigt Verbindungsdetails, Blast-FPS, RTT und Paketverlust
+als transparente Live-Anzeige unter normalen Anwendungsfenstern.
+
+Start
+  ZIP entpacken und BlastPulse.exe innerhalb der Horizon-Blast-Sitzung starten.
+  Voraussetzungen: Windows 10/11 x64, .NET Framework 4.x sowie lesbare
+  Sitzungszähler und Logs. Die Anwendung ist unsigniert.
+
+Bedienung
+  Rechtsklick auf das BlastPulse-Symbol neben der Uhr:
+  - Language/Sprache -> English / Deutsch
+  - Desktop-Anzeige ausblenden/einblenden
+  - BlastPulse beenden
+  Englisch ist voreingestellt. Die Sprachwahl gilt sofort und bleibt gespeichert.
+
+Anzeige anpassen
+  Die optionale config.json liegt neben BlastPulse.exe. Nach Änderungen
+  BlastPulse neu starten. Standardwerte:
+  RefreshSeconds=1, LogRefreshSeconds=5, PanelWidth=640, Margin=30,
+  BottomOffset=150, FontSize=11, FontFamily="Segoe UI", Language="en".
+  BottomOffset lässt Platz für BGInfo. Für eine kompakte Anzeige unmittelbar
+  oberhalb der Taskleiste: PanelWidth=460, Margin=20, BottomOffset=0.
+  Bereiche und ein vollständiges Beispiel stehen in README.de.md.
+
+  Die persönliche Sprachwahl in
+  %LOCALAPPDATA%\BlastPulse\preferences.json
+  hat Vorrang vor Language in config.json. Die gemeinsame Konfiguration
+  benötigt nur Lesezugriff, auch auf einer Netzwerkfreigabe.
+
+Start bei der Anmeldung
+  EXE und Konfiguration können gemeinsam auf einer Freigabe liegen.
+  Benutzer benötigen Lesen/Ausführen. Beispiel für ein Benutzer-Anmeldeskript:
+  start "" "\\example.com\SYSVOL\example.com\scripts\BlastPulse\BlastPulse.exe"
+  Den Beispielpfad ersetzen. Die Anwendung richtet selbst keinen Autostart ein.
+  Das Skript darf nicht auf das Ende des dauerhaft laufenden Programms warten.
+  Beim Update BlastPulse beenden, EXE ersetzen, eigene config.json behalten
+  und erneut starten.
+
+Datenquellen und Bedeutung
+  Lokale WMI-Leistungszähler liefern RTT, Uplink-Paketverlust und Blast-FPS.
+  Das Blast-Worker-Log liefert Codec, Aufnahmeverfahren, Transport und
+  Horizon-Qualitätsstatus; Windows liefert die Bildschirmangaben.
+  Kein externer Daten-Upload und keine eigenen Zugangsdaten erforderlich.
+  Blast-FPS beschreiben die Desktop-Übertragung, nicht die Video-Bildrate.
+
+  Qualität und Transport stimmen nicht garantiert mit der aktuellen Anzeige
+  des ursprünglichen Horizon-Tray-Tools überein: Sie benötigen einen passenden
+  Logeintrag, den Horizon nicht zwingend laufend schreibt. BlastPulse löst
+  dessen Aktualisierung nicht selbst aus. Ohne passenden Eintrag erscheint
+  "Nicht gemeldet". Einträge über 90 Sekunden werden als älter gekennzeichnet;
+  eine unerkannte Logzeit wird separat angezeigt. Keine eigene Ersatzbewertung.
+
+Kompatibilität
+  Eine zentrale Verteilung vor dem Rollout in der eigenen Umgebung testen.
+  Die Anzeige nutzt den primären Bildschirm. Mehrere Monitore,
+  Bildschirm-/DPI-Wechsel, Explorer-Neustarts und Wiederverbindungen sind
+  noch nicht umfassend getestet. Verfügbarkeit der Angaben hängt von
+  Horizon-Version, Logs und Zugriffsrechten ab.
+
+Ausführliche Anleitung und genaue Datenquellen:
+  ZIP zuerst entpacken und README.html im Browser öffnen.
+  Oben zwischen English und Deutsch wechseln; beide Anleitungen sind offline
+  enthalten. README.de.html öffnet direkt die deutsche Fassung.
+  Die Markdown-Fassungen sind ebenfalls enthalten:
+  Deutsch: README.de.md
+  English: README.md
