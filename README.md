@@ -1,19 +1,18 @@
 <div align="center">
-<h1>BlastPulse</h1>
-<p><strong>Horizon Blast connection details, visible at a glance on your desktop.</strong></p>
+<p><img src="assets/banner-en.png" alt="Blast Pulse — Horizon Blast" width="1200"></p>
 <p>by <strong>Stefan Gourguis</strong> · Omnissa Tech Insider · solvig. GmbH · solvig.ch</p>
 <p><kbd>Version 1.0</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.x</kbd></p>
 <p><a href="https://github.com/vmmachina/blastpulse/blob/main/README.md"><kbd>English</kbd></a> | <a href="https://github.com/vmmachina/blastpulse/blob/main/README.de.md"><kbd>Deutsch</kbd></a></p>
-<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse.exe"><strong>↓ Download EXE</strong></a> &nbsp; · &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse-1.0.0-win-x64.zip"><strong>↓ Download Windows ZIP</strong></a></p>
+<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse.exe"><img src="assets/download-exe-en.png" alt="Download EXE" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse-1.0.0-win-x64.zip"><img src="assets/download-zip-en.png" alt="Download Windows ZIP" width="280"></a></p>
 </div>
 
-The idea came from a simple inconvenience: checking a connection meant repeatedly opening the original Horizon Blast tray icon at the bottom right of the screen. BlastPulse keeps the relevant information visible on the desktop, so you can follow your session while you work.
+The idea came from a simple inconvenience: checking a connection meant repeatedly opening the original Horizon Blast tray icon at the bottom right of the screen. Blast Pulse keeps the relevant information visible on the desktop, so you can follow your session while you work.
 
 The compact display shows connection details alongside Blast FPS, round-trip time (RTT) and uplink packet loss. Live counters refresh every second by default. It appears as a transparent layer at the bottom right of the primary desktop, beneath ordinary application windows. Your wallpaper remains the background; it is not rewritten for each update.
 
 ## Download and start
 
-Download [BlastPulse 1.0 for Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse-1.0.0-win-x64.zip). The package contains the application, an example configuration and English/German documentation. For offline reading, extract the ZIP and open `README.html` in your browser; use the English/Deutsch links at the top to change language.
+Download [Blast Pulse 1.0 for Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse-1.0.0-win-x64.zip). The package contains the application, an example configuration and English/German documentation. For offline reading, extract the ZIP and open `README.html` in your browser; use the English/Deutsch links at the top to change language.
 
 The [release page](https://github.com/vmmachina/blastpulse/releases/tag/v1.0.0) also offers the [standalone EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/config.json) and [SHA-256 checksums](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/SHA256SUMS.txt).
 
@@ -23,11 +22,11 @@ You need Windows 10/11 x64, .NET Framework 4.x and an active Horizon Blast sessi
 2. Run `BlastPulse.exe` inside your Horizon Blast session.
 3. The desktop display appears and updates automatically.
 
-Right-click the BlastPulse icon in the notification area next to the clock to change **Language → English / Deutsch**, **Hide/Show desktop display**, or **Exit BlastPulse**. English is the default. A language change takes effect immediately and is remembered for your Windows user.
+Right-click the Blast Pulse icon in the notification area next to the clock to change **Language → English / Deutsch**, **Hide/Show desktop display**, or **Exit Blast Pulse**. English is the default. A language change takes effect immediately and is remembered for your Windows user.
 
 ## Adjust the display
 
-Place `config.json` beside `BlastPulse.exe` and restart BlastPulse after editing it. Without this file, the defaults below apply.
+Place `config.json` beside `BlastPulse.exe` and restart Blast Pulse after editing it. Without this file, the defaults below apply.
 
 | Setting | Default | Purpose and allowed values |
 | --- | --- | --- |
@@ -51,7 +50,7 @@ The default bottom offset leaves room for existing BGInfo text. For a narrower d
 }
 ```
 
-The language selected in the tray is saved in `%LOCALAPPDATA%\BlastPulse\preferences.json` and takes priority over `Language` in the shared configuration. To return to the configured language, exit BlastPulse, remove that preference file and start it again. Users only need read access to `config.json`, including when it is on a network share.
+The language selected in the tray is saved in `%LOCALAPPDATA%\BlastPulse\preferences.json` and takes priority over `Language` in the shared configuration. To return to the configured language, exit Blast Pulse, remove that preference file and start it again. Users only need read access to `config.json`, including when it is on a network share.
 
 ## Start from a share or GPO
 
@@ -61,13 +60,13 @@ Keep `BlastPulse.exe` and `config.json` together on the share. Users need read/e
 start "" "\\example.com\SYSVOL\example.com\scripts\BlastPulse\BlastPulse.exe"
 ```
 
-Replace the example path with your own UNC or local path. BlastPulse keeps running in the user's session, so the logon script should not wait for it to exit. The application does not set up autostart itself. Existing BGInfo can run alongside it; adjust `BottomOffset` to leave enough space.
+Replace the example path with your own UNC or local path. Blast Pulse keeps running in the user's session, so the logon script should not wait for it to exit. The application does not set up autostart itself. Existing BGInfo can run alongside it; adjust `BottomOffset` to leave enough space.
 
-For an update, exit BlastPulse, replace the EXE and start it again. Keep your existing `config.json` to preserve your layout. Test share access and your organisation's application policies before wider deployment.
+For an update, exit Blast Pulse, replace the EXE and start it again. Keep your existing `config.json` to preserve your layout. Test share access and your organisation's application policies before wider deployment.
 
 ## Data sources
 
-BlastPulse reads data locally on the Windows desktop. It does not query a Horizon Connection Server API or call the tray tool's internal `wavedll.dll` interface. No credentials are required by BlastPulse, and it does not upload the collected values to an external service.
+Blast Pulse reads data locally on the Windows desktop. It does not query a Horizon Connection Server API or call the tray tool's internal `wavedll.dll` interface. No credentials are required by Blast Pulse, and it does not upload the collected values to an external service.
 
 | Desktop information | Source |
 | --- | --- |
@@ -78,7 +77,7 @@ BlastPulse reads data locally on the Windows desktop. It does not query a Horizo
 | Display driver, resolution and refresh rate | `Win32_VideoController`, filtered to devices whose name contains `Horizon` |
 | Primary screen position and DPI | Windows screen bounds and desktop graphics DPI |
 
-Both performance-counter classes are read through WMI in `root\cimv2`. BlastPulse selects the counter instance whose `Name` starts with `Session ID: <current session ID>;`.
+Both performance-counter classes are read through WMI in `root\cimv2`. Blast Pulse selects the counter instance whose `Name` starts with `Session ID: <current session ID>;`.
 
 The compact desktop view prioritizes the six original connection details: codec, capture method, display device, screen configuration, transport and Horizon quality. Blast FPS, RTT and uplink packet loss appear beneath them. **Blast FPS describes the desktop transmission, not the source video's playback frame rate.**
 
@@ -90,7 +89,7 @@ The log file is:
 
 Only the last 4 MiB are read. Log values represent the latest matching entry in that section and may be older than the current counter readings. The codec name comes directly from the log; no numeric encoder-to-codec mapping is assumed.
 
-**The original Horizon quality status is not guaranteed to update continuously.** It depends on a matching Agent log entry; BlastPulse does not request an update from the original tray tool. BlastPulse shows that entry's own timestamp and marks a status older than 90 seconds as an older log state. It does not present a custom rating as Horizon's original status.
+**The original Horizon quality status is not guaranteed to update continuously.** It depends on a matching Agent log entry; Blast Pulse does not request an update from the original tray tool. Blast Pulse shows that entry's own timestamp and marks a status older than 90 seconds as an older log state. It does not present a custom rating as Horizon's original status.
 
 If the current log section contains no matching quality entry, transport and quality show **Not reported**. The footer says **Quality status: No matching log entry**. This refers specifically to the quality entry; codec/capture log data and live counters can still be available. A recognized entry displays its own report time; an unrecognized timestamp is identified separately.
 
@@ -98,7 +97,7 @@ The displayed connection transport is the backend recorded in the log. It is not
 
 ## Compatibility
 
-BlastPulse 1.0 for Windows x64.
+Blast Pulse 1.0 for Windows x64.
 
 - The display uses the primary screen. Multiple monitors, display/DPI changes, Explorer restarts and session reconnects have not been comprehensively tested.
 - Available information depends on the Horizon Agent version, log format and the user's access to the counters and logs.
