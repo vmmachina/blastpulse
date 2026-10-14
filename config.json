@@ -1,0 +1,10 @@
+{
+  "RefreshSeconds": 1,
+  "LogRefreshSeconds": 5,
+  "PanelWidth": 640,
+  "Margin": 30,
+  "BottomOffset": 150,
+  "FontSize": 11,
+  "FontFamily": "Segoe UI",
+  "Language": "en"
+}
