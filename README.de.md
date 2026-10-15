@@ -1,14 +1,20 @@
 <div align="center">
 <p><img src="assets/banner-de.png" alt="Blast Pulse — Omnissa Horizon" width="1200"></p>
 <p>by <strong>Stefan Gourguis</strong> · Omnissa Tech Insider · solvig. GmbH · solvig.ch</p>
-<p><kbd>Version 1.0</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.x</kbd></p>
+<p><kbd>Version 1.1</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.x</kbd></p>
 <p><a href="https://github.com/vmmachina/blastpulse/blob/main/README.md"><kbd>English</kbd></a> | <a href="https://github.com/vmmachina/blastpulse/blob/main/README.de.md"><kbd>Deutsch</kbd></a></p>
-<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse.exe"><img src="assets/download-exe-de.png" alt="EXE herunterladen" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse-1.0.0-win-x64.zip"><img src="assets/download-zip-de.png" alt="Windows-ZIP herunterladen" width="280"></a></p>
+<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse.exe"><img src="assets/download-exe-de.png" alt="EXE herunterladen" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse-1.1.0-win-x64.zip"><img src="assets/download-zip-de.png" alt="Windows-ZIP herunterladen" width="280"></a></p>
 </div>
 
 Die Idee entstand aus einer einfachen Unannehmlichkeit: Um die Verbindung zu prüfen, musste man immer wieder das ursprüngliche Horizon-Blast-Symbol unten rechts im Infobereich öffnen. Blast Pulse hält die relevanten Informationen direkt auf dem Desktop sichtbar, damit sich die Sitzung während der Arbeit beobachten lässt.
 
 Die kompakte Anzeige zeigt Verbindungsdetails sowie Blast-FPS, Antwortzeit (RTT) und Uplink-Paketverlust. Live-Zähler werden standardmässig jede Sekunde aktualisiert. Die transparente Anzeige liegt unten rechts auf dem primären Desktop unter normalen Anwendungsfenstern. Das Hintergrundbild bleibt erhalten und wird nicht bei jeder Aktualisierung neu geschrieben.
+
+## Neu in 1.1
+
+- Die Anzeige folgt Änderungen an Auflösung, Windows-Skalierung und Desktop-Arbeitsfläche.
+- Texte werden vor dem Zeichnen ausgemessen, damit Überschriften, Beschriftungen und Werte auch bei hoher DPI-Skalierung genug Platz haben.
+- Lange Texte werden automatisch umgebrochen. Auf kleinen Desktops verwendet die Anzeige die grösste noch passende Schrift.
 
 ## Im Einsatz
 
@@ -25,9 +31,9 @@ Beispielsitzung während der Videowiedergabe. Messwerte und Log-Zeitstempel unte
 
 ## Herunterladen und starten
 
-[Blast Pulse 1.0 für Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse-1.0.0-win-x64.zip) herunterladen. Das Paket enthält die Anwendung, eine Beispielkonfiguration und die Dokumentation auf Englisch und Deutsch. Zum Offline-Lesen das ZIP entpacken und `README.html` im Browser öffnen; die Links English/Deutsch oben wechseln die Sprache.
+[Blast Pulse 1.1 für Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse-1.1.0-win-x64.zip) herunterladen. Das Paket enthält die Anwendung, eine Beispielkonfiguration und die Dokumentation auf Englisch und Deutsch. Zum Offline-Lesen das ZIP entpacken und `README.html` im Browser öffnen; die Links English/Deutsch oben wechseln die Sprache.
 
-Auf der [Release-Seite](https://github.com/vmmachina/blastpulse/releases/tag/v1.0.0) stehen auch die [einzelne EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/config.json) und [SHA-256-Prüfsummen](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/SHA256SUMS.txt) bereit.
+Auf der [Release-Seite](https://github.com/vmmachina/blastpulse/releases/tag/v1.1.0) stehen auch die [einzelne EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/config.json) und [SHA-256-Prüfsummen](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/SHA256SUMS.txt) bereit.
 
 Voraussetzungen sind Windows 10/11 x64, .NET Framework 4.x und eine aktive Horizon-Blast-Sitzung mit lesbaren Sitzungszählern und Logs. Die Anwendung ist unsigniert.
 
@@ -45,12 +51,14 @@ Ein Rechtsklick auf das BlastPulse-Symbol im Infobereich neben der Uhr öffnet *
 | --- | --- | --- |
 | `RefreshSeconds` | `1` | Aktualisierung der Live-Zähler, 1–3600 Sekunden |
 | `LogRefreshSeconds` | `5` | Aktualisierung der Log- und Bildschirmangaben, 1–3600 Sekunden |
-| `PanelWidth` | `640` | Breite der Anzeige, 460–900 Pixel |
-| `Margin` | `30` | Abstand zum rechten Rand, 12–150 Pixel |
-| `BottomOffset` | `150` | Freiraum unter der Anzeige innerhalb der Desktop-Arbeitsfläche, 0–1000 Pixel |
-| `FontSize` | `11` | Schriftgrösse, 10–22 Punkt |
+| `PanelWidth` | `640` | Gewünschte Anzeigenbreite bei 96 DPI, 460–900 logische Pixel |
+| `Margin` | `30` | Abstand zum rechten Rand bei 96 DPI, 12–150 logische Pixel |
+| `BottomOffset` | `150` | Freiraum unter der Anzeige bei 96 DPI, 0–1000 logische Pixel |
+| `FontSize` | `11` | Gewünschte Schriftgrösse, 10–22 Punkt |
 | `FontFamily` | `"Segoe UI"` | Installierte Windows-Schrift; andernfalls verwendet Windows eine Ersatzschrift |
 | `Language` | `"en"` | Anfängliche Sprache: `"en"` oder `"de"` |
+
+Anzeigenbreite, Abstände und Schrift skalieren gemeinsam mit der aktuellen Windows-DPI-Einstellung. Die Pixelangaben oben beziehen sich auf 100 % Skalierung (96 DPI). Auflösungs- und DPI-Änderungen werden im laufenden Betrieb übernommen; nach Änderungen an `config.json` ist weiterhin ein Neustart nötig. Lange Beschriftungen, Werte und Fusszeilen werden umgebrochen. Die Anzeigenhöhe ergibt sich aus dem tatsächlichen Text. Reicht die Desktop-Fläche nicht aus, wird die Schrift nur so weit wie nötig verkleinert.
 
 Der voreingestellte Abstand nach unten lässt Platz für vorhandenen BGInfo-Text. Für eine schmalere Anzeige direkt oberhalb der Taskleiste genügt diese vollständige `config.json`; ausgelassene Einstellungen behalten ihre Standardwerte:
 
@@ -110,9 +118,11 @@ Der angezeigte Verbindungstransport stammt aus dem Log. Er wird nicht aus der mo
 
 ## Kompatibilität
 
-Blast Pulse 1.0 für Windows x64.
+Blast Pulse 1.1 für Windows x64.
 
-- Die Anzeige nutzt den primären Bildschirm. Mehrere Monitore, Bildschirm-/DPI-Wechsel, Explorer-Neustarts und Sitzungswiederverbindungen wurden noch nicht umfassend getestet.
+Automatische Windows-Darstellungsprüfungen waren bei 100, 125, 150, 200 und 300 % Skalierung erfolgreich, auch mit grosser Schrift und schmalen Anzeigen. Der Nutzertest unter Horizon bestätigte vollständig lesbare Anzeigen bei 3840 × 2160 mit 192 DPI (200 %) und 1920 × 1080 mit 168 DPI (175 %).
+
+- Die Anzeige nutzt den primären Bildschirm. Mehrere Monitore, Explorer-Neustarts und Sitzungswiederverbindungen wurden noch nicht umfassend getestet.
 - Welche Angaben verfügbar sind, hängt von Horizon-Agent-Version, Logformat und den Zugriffsrechten auf Zähler und Logs ab.
 - Eine zentrale Verteilung vor dem Rollout in der eigenen Umgebung testen.
 

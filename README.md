@@ -1,14 +1,20 @@
 <div align="center">
 <p><img src="assets/banner-en.png" alt="Blast Pulse — Omnissa Horizon" width="1200"></p>
 <p>by <strong>Stefan Gourguis</strong> · Omnissa Tech Insider · solvig. GmbH · solvig.ch</p>
-<p><kbd>Version 1.0</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.x</kbd></p>
+<p><kbd>Version 1.1</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.x</kbd></p>
 <p><a href="https://github.com/vmmachina/blastpulse/blob/main/README.md"><kbd>English</kbd></a> | <a href="https://github.com/vmmachina/blastpulse/blob/main/README.de.md"><kbd>Deutsch</kbd></a></p>
-<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse.exe"><img src="assets/download-exe-en.png" alt="Download EXE" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse-1.0.0-win-x64.zip"><img src="assets/download-zip-en.png" alt="Download Windows ZIP" width="280"></a></p>
+<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse.exe"><img src="assets/download-exe-en.png" alt="Download EXE" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse-1.1.0-win-x64.zip"><img src="assets/download-zip-en.png" alt="Download Windows ZIP" width="280"></a></p>
 </div>
 
 The idea came from a simple inconvenience: checking a connection meant repeatedly opening the original Horizon Blast tray icon at the bottom right of the screen. Blast Pulse keeps the relevant information visible on the desktop, so you can follow your session while you work.
 
 The compact display shows connection details alongside Blast FPS, round-trip time (RTT) and uplink packet loss. Live counters refresh every second by default. It appears as a transparent layer at the bottom right of the primary desktop, beneath ordinary application windows. Your wallpaper remains the background; it is not rewritten for each update.
+
+## What’s new in 1.1
+
+- The display follows changes to resolution, Windows scaling and the desktop working area.
+- Text is measured before drawing, so headings, labels and values have enough room at higher DPI settings.
+- Long text wraps automatically. On a small desktop, the display uses the largest text size that fits.
 
 ## In action
 
@@ -25,9 +31,9 @@ Example session during video playback. Metrics and log timestamps vary by sessio
 
 ## Download and start
 
-Download [Blast Pulse 1.0 for Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse-1.0.0-win-x64.zip). The package contains the application, an example configuration and English/German documentation. For offline reading, extract the ZIP and open `README.html` in your browser; use the English/Deutsch links at the top to change language.
+Download [Blast Pulse 1.1 for Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse-1.1.0-win-x64.zip). The package contains the application, an example configuration and English/German documentation. For offline reading, extract the ZIP and open `README.html` in your browser; use the English/Deutsch links at the top to change language.
 
-The [release page](https://github.com/vmmachina/blastpulse/releases/tag/v1.0.0) also offers the [standalone EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/config.json) and [SHA-256 checksums](https://github.com/vmmachina/blastpulse/releases/download/v1.0.0/SHA256SUMS.txt).
+The [release page](https://github.com/vmmachina/blastpulse/releases/tag/v1.1.0) also offers the [standalone EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/config.json) and [SHA-256 checksums](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/SHA256SUMS.txt).
 
 You need Windows 10/11 x64, .NET Framework 4.x and an active Horizon Blast session with readable session counters and logs. The application is unsigned.
 
@@ -45,12 +51,14 @@ Place `config.json` beside `BlastPulse.exe` and restart Blast Pulse after editin
 | --- | --- | --- |
 | `RefreshSeconds` | `1` | Live counter refresh interval, 1–3600 seconds |
 | `LogRefreshSeconds` | `5` | Log and display-information refresh interval, 1–3600 seconds |
-| `PanelWidth` | `640` | Display width, 460–900 pixels |
-| `Margin` | `30` | Distance from the right edge, 12–150 pixels |
-| `BottomOffset` | `150` | Space below the display within the desktop working area, 0–1000 pixels |
-| `FontSize` | `11` | Text size, 10–22 points |
+| `PanelWidth` | `640` | Preferred display width at 96 DPI, 460–900 logical pixels |
+| `Margin` | `30` | Distance from the right edge at 96 DPI, 12–150 logical pixels |
+| `BottomOffset` | `150` | Space below the display at 96 DPI, 0–1000 logical pixels |
+| `FontSize` | `11` | Preferred text size, 10–22 points |
 | `FontFamily` | `"Segoe UI"` | Installed Windows font; Windows substitutes a font if unavailable |
 | `Language` | `"en"` | Initial language: `"en"` or `"de"` |
+
+Panel width, margins and text scale together with the current Windows DPI. The pixel settings above refer to 100% scaling (96 DPI). Resolution and DPI changes are picked up while the application is running; editing `config.json` still requires a restart. Long labels, values and footer lines wrap, and the display height is measured from their actual text. If the desktop is too small, the text size is reduced only as far as needed.
 
 The default bottom offset leaves room for existing BGInfo text. For a narrower display directly above the taskbar, use this complete `config.json`; omitted settings retain their defaults:
 
@@ -110,9 +118,11 @@ The displayed connection transport is the backend recorded in the log. It is not
 
 ## Compatibility
 
-Blast Pulse 1.0 for Windows x64.
+Blast Pulse 1.1 for Windows x64.
 
-- The display uses the primary screen. Multiple monitors, display/DPI changes, Explorer restarts and session reconnects have not been comprehensively tested.
+Automated Windows rendering checks passed at 100%, 125%, 150%, 200% and 300% scaling, including large fonts and narrow panels. User testing in Horizon confirmed readable layouts at 3840 × 2160 with 192 DPI (200%) and 1920 × 1080 with 168 DPI (175%).
+
+- The display uses the primary screen. Multiple monitors, Explorer restarts and session reconnects have not been comprehensively tested.
 - Available information depends on the Horizon Agent version, log format and the user's access to the counters and logs.
 - Test central deployment in your own environment before rollout.
 

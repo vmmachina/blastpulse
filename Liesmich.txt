@@ -1,5 +1,5 @@
 Blast Pulse - by Stefan Gourguis
-Version 1.0
+Version 1.1
 
 Horizon-Blast-Verbindungsdaten direkt auf dem Desktop im Blick.
 
@@ -7,6 +7,12 @@ Die Idee: Statt immer wieder das ursprüngliche Horizon-Blast-Symbol unten
 rechts zu öffnen, sollen die relevanten Angaben auf dem Desktop sichtbar
 bleiben. Blast Pulse zeigt Verbindungsdetails, Blast-FPS, RTT und Paketverlust
 als transparente Live-Anzeige unter normalen Anwendungsfenstern.
+
+Neu in 1.1
+  Automatische Anpassung an Auflösung und Windows-DPI-Skalierung.
+  Gemessene Zeilenhöhen verhindern abgeschnittene Schrift; lange Texte
+  werden umgebrochen. Auf kleinen Desktops wird die grösste passende
+  Textgrösse gewählt.
 
 Start
   ZIP entpacken und BlastPulse.exe innerhalb der Horizon-Blast-Sitzung starten.
@@ -27,6 +33,8 @@ Anzeige anpassen
   BottomOffset=150, FontSize=11, FontFamily="Segoe UI", Language="en".
   BottomOffset lässt Platz für BGInfo. Für eine kompakte Anzeige unmittelbar
   oberhalb der Taskleiste: PanelWidth=460, Margin=20, BottomOffset=0.
+  Diese Pixelwerte gelten bei 96 DPI (100 %); sie skalieren gemeinsam mit
+  der Schrift. Auflösungs-/DPI-Änderungen werden im laufenden Betrieb erkannt.
   Bereiche und ein vollständiges Beispiel stehen in README.de.md.
 
   Die persönliche Sprachwahl in
@@ -59,9 +67,10 @@ Datenquellen und Bedeutung
 
 Kompatibilität
   Eine zentrale Verteilung vor dem Rollout in der eigenen Umgebung testen.
-  Die Anzeige nutzt den primären Bildschirm. Mehrere Monitore,
-  Bildschirm-/DPI-Wechsel, Explorer-Neustarts und Wiederverbindungen sind
-  noch nicht umfassend getestet. Verfügbarkeit der Angaben hängt von
+  Die Anzeige nutzt den primären Bildschirm. Getestete Horizon-Layouts:
+  3840 x 2160 bei 192 DPI und 1920 x 1080 bei 168 DPI. Mehrere Monitore,
+  Explorer-Neustarts und Wiederverbindungen sind noch nicht umfassend
+  getestet. Verfügbarkeit der Angaben hängt von
   Horizon-Version, Logs und Zugriffsrechten ab.
 
 Ausführliche Anleitung und genaue Datenquellen:
