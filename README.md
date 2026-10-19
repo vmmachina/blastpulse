@@ -1,49 +1,28 @@
 <div align="center">
 <p><img src="assets/banner-en.png" alt="Blast Pulse — Omnissa Horizon" width="1200"></p>
 <p>by <strong>Stefan Gourguis</strong> · Omnissa Tech Insider · solvig. GmbH · solvig.ch</p>
-<p><kbd>Stable 1.1</kbd> &nbsp; <kbd>Preview 1.2</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.x</kbd></p>
+<p><kbd>Version 1.2</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.8</kbd></p>
 <p><a href="https://github.com/vmmachina/blastpulse/blob/main/README.md"><kbd>English</kbd></a> | <a href="https://github.com/vmmachina/blastpulse/blob/main/README.de.md"><kbd>Deutsch</kbd></a></p>
-<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse.exe"><img src="assets/download-exe-en.png" alt="Download EXE" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse-1.1.0-win-x64.zip"><img src="assets/download-zip-en.png" alt="Download Windows ZIP" width="280"></a></p>
-<p><strong>NVIDIA preview 1.2:</strong> <a href="https://github.com/vmmachina/blastpulse/releases/tag/v1.2.0-preview.1">Downloads and release notes</a></p>
+<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.2.0/BlastPulse.exe"><img src="assets/download-exe-en.png" alt="Download EXE" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.2.0/BlastPulse-1.2.0-win-x64.zip"><img src="assets/download-zip-en.png" alt="Download Windows ZIP" width="280"></a></p>
 </div>
 
 The idea came from a simple inconvenience: checking a connection meant repeatedly opening the original Horizon Blast tray icon at the bottom right of the screen. Blast Pulse keeps the relevant information visible on the desktop, so you can follow your session while you work.
 
 The compact display shows connection details alongside Blast FPS, round-trip time (RTT) and uplink packet loss. Live counters refresh every second by default. It appears as a transparent layer at the bottom right of the primary desktop, beneath ordinary application windows. Your wallpaper remains the background; it is not rewritten for each update.
 
-## NVIDIA preview — 1.2
+## Latest release — 1.2
 
-[Download preview EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0-preview.1/BlastPulse.exe) · [Download preview ZIP](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0-preview.1/BlastPulse-1.2.0-preview.1-win-x64.zip) · [Release notes](https://github.com/vmmachina/blastpulse/releases/tag/v1.2.0-preview.1)
+- NVIDIA GPU count, name, virtualization mode, driver version, licensed product and license status.
+- Separate Horizon and NVIDIA sections with violet dividers and coloured license badges.
+- NVIDIA polling every 30 seconds, independently of the live Blast counters.
 
-Blast Pulse can now show the NVIDIA driver's GPU and licensing information alongside the Horizon session:
-
-- **GPU count, GPU name, Virtualization mode, Driver version, Licensed product and License status.**
-- Separate Horizon and NVIDIA sections, with violet dividers and coloured license badges.
-- A compact mode key, available in English and German:
-
-| Code | Mode |
-| --- | --- |
-| `0` | Native GPU |
-| `1` | Passthrough |
-| `2` | vGPU Guest |
-| `3` | vGPU Host |
-| `4` | vSGA Host |
-
-NVIDIA data refreshes every **30 seconds**, independently of the live Blast counters. Each GPU visible to the guest is listed separately. Without an installed NVIDIA NVML library, the Horizon display stays as before. Existing `config.json` files can be kept.
-
-**This is a preview for testing on Windows 10/11 x64 with .NET Framework 4.8.** Exit the current tray instance before starting it. The integrated NVIDIA display and automated Windows checks are still awaiting validation. Version **1.1 remains the stable release**.
-
-## What’s new in 1.1
-
-- The display follows changes to resolution, Windows scaling and the desktop working area.
-- Text is measured before drawing, so headings, labels and values have enough room at higher DPI settings.
-- Long text wraps automatically. On a small desktop, the display uses the largest text size that fits.
+[Downloads and full release notes](https://github.com/vmmachina/blastpulse/releases/latest)
 
 ## In action
 
 <p align="center"><img src="assets/screenshot-desktop.png" alt="Blast Pulse in the bottom-right corner of a Windows desktop alongside a video window" width="1100"></p>
 
-Blast Pulse 1.1 during video playback. Metrics and log timestamps vary by session; these screenshots do not yet show the NVIDIA preview.
+Horizon session during video playback. Metrics and log timestamps vary by session.
 
 <details>
 <summary>Connection details — close-up</summary>
@@ -52,13 +31,22 @@ Blast Pulse 1.1 during video playback. Metrics and log timestamps vary by sessio
 
 </details>
 
-## Stable 1.1 — download and start
+<details>
+<summary>NVIDIA GPU and licensing — screenshot</summary>
 
-Download [Blast Pulse 1.1 for Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse-1.1.0-win-x64.zip). The package contains the application, an example configuration and English/German documentation. For offline reading, extract the ZIP and open `README.html` in your browser; use the English/Deutsch links at the top to change language.
+<p align="center"><img src="assets/screenshot-nvidia.png" alt="Blast Pulse 1.2 showing NVIDIA A2-16Q, driver 581.42, vGPU Guest mode and an Unlicensed badge" width="640"></p>
 
-The [release page](https://github.com/vmmachina/blastpulse/releases/tag/v1.1.0) also offers the [standalone EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/config.json) and [SHA-256 checksums](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/SHA256SUMS.txt).
+User test at 192 DPI. The license state shown is the guest driver's report.
 
-You need Windows 10/11 x64, .NET Framework 4.x and an active Horizon Blast session with readable session counters and logs. The application is unsigned.
+</details>
+
+## Download and start
+
+Download [Blast Pulse 1.2 for Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0/BlastPulse-1.2.0-win-x64.zip). The package contains the application, an example configuration and English/German documentation. For offline reading, extract the ZIP and open `README.html` in your browser; use the English/Deutsch links at the top to change language.
+
+The [release page](https://github.com/vmmachina/blastpulse/releases/tag/v1.2.0) also offers the [standalone EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0/config.json) and [SHA-256 checksums](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0/SHA256SUMS.txt).
+
+You need Windows 10/11 x64, .NET Framework 4.8 and an active Horizon Blast session with readable session counters and logs. The application is unsigned.
 
 1. Extract the ZIP into a local folder or an accessible network share.
 2. Run `BlastPulse.exe` inside your Horizon Blast session.
@@ -139,7 +127,7 @@ If the current log section contains no matching quality entry, transport and qua
 
 The displayed connection transport is the backend recorded in the log. It is not inferred from momentary traffic activity.
 
-### NVIDIA data — 1.2 preview
+### NVIDIA data
 
 The NVIDIA section reads the installed driver's **NVML** library locally. It does not launch `nvidia-smi`, query the DLS server or change licensing settings. No NVIDIA library is bundled with Blast Pulse.
 
@@ -157,9 +145,11 @@ A **Licensed** guest does not by itself prove a current connection to NVIDIA DLS
 
 ## Compatibility
 
-Blast Pulse 1.1 for Windows x64.
+Blast Pulse 1.2 for Windows x64.
 
-Automated Windows rendering checks passed at 100%, 125%, 150%, 200% and 300% scaling, including large fonts and narrow panels. User testing in Horizon confirmed readable layouts at 3840 × 2160 with 192 DPI (200%) and 1920 × 1080 with 168 DPI (175%).
+The NVIDIA display was checked in a Horizon vGPU session with an NVIDIA A2-16Q, driver 581.42 and 192 DPI. All six NVIDIA values were visible; the driver reported **Unlicensed**. Other license states and multi-GPU layouts have not yet been checked on real hardware. The automated Windows regression run for 1.2 is still pending.
+
+The 1.1 baseline passed automated Windows rendering checks at 100%, 125%, 150%, 200% and 300% scaling, including large fonts and narrow panels. User testing in Horizon confirmed readable layouts at 3840 × 2160 with 192 DPI (200%) and 1920 × 1080 with 168 DPI (175%).
 
 - The display uses the primary screen. Multiple monitors, Explorer restarts and session reconnects have not been comprehensively tested.
 - Available information depends on the Horizon Agent version, log format and the user's access to the counters and logs.

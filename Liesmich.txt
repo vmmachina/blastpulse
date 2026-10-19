@@ -1,5 +1,5 @@
 Blast Pulse - by Stefan Gourguis
-Version 1.1
+Version 1.2
 
 Horizon-Blast-Verbindungsdaten direkt auf dem Desktop im Blick.
 
@@ -8,15 +8,15 @@ rechts zu öffnen, sollen die relevanten Angaben auf dem Desktop sichtbar
 bleiben. Blast Pulse zeigt Verbindungsdetails, Blast-FPS, RTT und Paketverlust
 als transparente Live-Anzeige unter normalen Anwendungsfenstern.
 
-Neu in 1.1
-  Automatische Anpassung an Auflösung und Windows-DPI-Skalierung.
-  Gemessene Zeilenhöhen verhindern abgeschnittene Schrift; lange Texte
-  werden umgebrochen. Auf kleinen Desktops wird die grösste passende
-  Textgrösse gewählt.
+Neu in 1.2
+  NVIDIA: GPU-Anzahl, GPU-Name, Virtualisierungsmodus, Treiberversion,
+  Lizenzprodukt und Lizenzstatus. Eigener Bereich mit violetten Trennlinien,
+  farbigen Lizenz-Badges und kurzer Modus-Legende.
+  NVIDIA-Abfrage alle 30 Sekunden, unabhängig von den Blast-Livezählern.
 
 Start
   ZIP entpacken und BlastPulse.exe innerhalb der Horizon-Blast-Sitzung starten.
-  Voraussetzungen: Windows 10/11 x64, .NET Framework 4.x sowie lesbare
+  Voraussetzungen: Windows 10/11 x64, .NET Framework 4.8 sowie lesbare
   Sitzungszähler und Logs. Die Anwendung ist unsigniert.
 
 Bedienung
@@ -55,6 +55,12 @@ Datenquellen und Bedeutung
   Lokale WMI-Leistungszähler liefern RTT, Uplink-Paketverlust und Blast-FPS.
   Das Blast-Worker-Log liefert Codec, Aufnahmeverfahren, Transport und
   Horizon-Qualitätsstatus; Windows liefert die Bildschirmangaben.
+  NVIDIA-Daten stammen aus der installierten NVML-Bibliothek des Treibers,
+  Lizenzangaben aus nvmlDeviceGetGridLicensableFeatures_v4. Ohne installierte
+  NVML-Bibliothek bleibt die bisherige Horizon-Anzeige erhalten. Eine vom
+  Gasttreiber gemeldete Lizenz belegt keine aktuelle DLS-Verbindung.
+  Keine NVIDIA-DLL wird mitgeliefert; Lizenzeinstellungen werden nicht geändert.
+  Fehlgeschlagene/veraltete Abfragen erscheinen als unbekannt.
   Kein externer Daten-Upload und keine eigenen Zugangsdaten erforderlich.
   Blast-FPS beschreiben die Desktop-Übertragung, nicht die Video-Bildrate.
 
@@ -67,7 +73,11 @@ Datenquellen und Bedeutung
 
 Kompatibilität
   Eine zentrale Verteilung vor dem Rollout in der eigenen Umgebung testen.
-  Die Anzeige nutzt den primären Bildschirm. Getestete Horizon-Layouts:
+  Die Anzeige nutzt den primären Bildschirm. NVIDIA-Anzeige im Nutzertest:
+  A2-16Q, Treiber 581.42, 192 DPI, Lizenzstatus Unlicensed. Andere
+  Lizenzzustände/mehrere GPUs noch nicht an echter Hardware geprüft;
+  automatischer Windows-Regressionslauf für 1.2 noch ausstehend.
+  Bereits geprüfte Horizon-Layouts der Basisversion:
   3840 x 2160 bei 192 DPI und 1920 x 1080 bei 168 DPI. Mehrere Monitore,
   Explorer-Neustarts und Wiederverbindungen sind noch nicht umfassend
   getestet. Verfügbarkeit der Angaben hängt von
