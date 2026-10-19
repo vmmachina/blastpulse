@@ -135,7 +135,7 @@ A **Licensed** guest does not by itself prove a current connection to NVIDIA DLS
 
 Blast Pulse 1.2 for Windows x64.
 
-The NVIDIA display was checked in a Horizon vGPU session with an NVIDIA A2-16Q, driver 581.42 and 192 DPI. All six NVIDIA values were visible; the driver reported **Unlicensed**. Other license states and multi-GPU layouts have not yet been checked on real hardware. The automated Windows regression run for 1.2 is still pending.
+The NVIDIA display was checked in a Horizon vGPU session with an NVIDIA A2-16Q, driver 581.42 and 192 DPI. All six NVIDIA values were visible; the driver reported **Unlicensed**. Other license states and multi-GPU layouts have not yet been checked on real hardware. Automated Windows regression checks passed for the 1.2 source revision, covering license-state handling, query timeouts, English/German text and DPI layouts.
 
 The 1.1 baseline passed automated Windows rendering checks at 100%, 125%, 150%, 200% and 300% scaling, including large fonts and narrow panels. User testing in Horizon confirmed readable layouts at 3840 × 2160 with 192 DPI (200%) and 1920 × 1080 with 168 DPI (175%).
 

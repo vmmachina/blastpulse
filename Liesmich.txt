@@ -76,7 +76,7 @@ Kompatibilität
   Die Anzeige nutzt den primären Bildschirm. NVIDIA-Anzeige im Nutzertest:
   A2-16Q, Treiber 581.42, 192 DPI, Lizenzstatus Unlicensed. Andere
   Lizenzzustände/mehrere GPUs noch nicht an echter Hardware geprüft;
-  automatischer Windows-Regressionslauf für 1.2 noch ausstehend.
+  Windows-Regressionsprüfungen für den Quellstand von 1.2 erfolgreich.
   Bereits geprüfte Horizon-Layouts der Basisversion:
   3840 x 2160 bei 192 DPI und 1920 x 1080 bei 168 DPI. Mehrere Monitore,
   Explorer-Neustarts und Wiederverbindungen sind noch nicht umfassend

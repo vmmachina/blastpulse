@@ -135,7 +135,7 @@ Ein unterstütztes, aktiviertes Feature erscheint entsprechend der Treibermeldun
 
 Blast Pulse 1.2 für Windows x64.
 
-Die NVIDIA-Anzeige wurde in einer Horizon-vGPU-Sitzung mit NVIDIA A2-16Q, Treiber 581.42 und 192 DPI geprüft. Alle sechs NVIDIA-Werte waren sichtbar; der Treiber meldete **Nicht lizenziert**. Andere Lizenzzustände und mehrere GPUs wurden noch nicht an echter Hardware geprüft. Der automatische Windows-Regressionslauf für 1.2 steht noch aus.
+Die NVIDIA-Anzeige wurde in einer Horizon-vGPU-Sitzung mit NVIDIA A2-16Q, Treiber 581.42 und 192 DPI geprüft. Alle sechs NVIDIA-Werte waren sichtbar; der Treiber meldete **Nicht lizenziert**. Andere Lizenzzustände und mehrere GPUs wurden noch nicht an echter Hardware geprüft. Die automatischen Windows-Regressionsprüfungen für den Quellstand von 1.2 waren erfolgreich, einschliesslich Lizenzstatus, Abfrage-Zeitlimit, englischer/deutscher Anzeige und DPI-Layouts.
 
 Die Basisversion 1.1 bestand die automatischen Windows-Darstellungsprüfungen bei 100, 125, 150, 200 und 300 % Skalierung erfolgreich, auch mit grosser Schrift und schmalen Anzeigen. Der Nutzertest unter Horizon bestätigte vollständig lesbare Anzeigen bei 3840 × 2160 mit 192 DPI (200 %) und 1920 × 1080 mit 168 DPI (175 %).
 
