@@ -1,14 +1,37 @@
 <div align="center">
 <p><img src="assets/banner-de.png" alt="Blast Pulse — Omnissa Horizon" width="1200"></p>
 <p>by <strong>Stefan Gourguis</strong> · Omnissa Tech Insider · solvig. GmbH · solvig.ch</p>
-<p><kbd>Version 1.1</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.x</kbd></p>
+<p><kbd>Stabil 1.1</kbd> &nbsp; <kbd>Preview 1.2</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.x</kbd></p>
 <p><a href="https://github.com/vmmachina/blastpulse/blob/main/README.md"><kbd>English</kbd></a> | <a href="https://github.com/vmmachina/blastpulse/blob/main/README.de.md"><kbd>Deutsch</kbd></a></p>
 <p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse.exe"><img src="assets/download-exe-de.png" alt="EXE herunterladen" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse-1.1.0-win-x64.zip"><img src="assets/download-zip-de.png" alt="Windows-ZIP herunterladen" width="280"></a></p>
+<p><strong>NVIDIA preview 1.2:</strong> <a href="https://github.com/vmmachina/blastpulse/releases/tag/v1.2.0-preview.1">Downloads und Release Notes</a></p>
 </div>
 
 Die Idee entstand aus einer einfachen Unannehmlichkeit: Um die Verbindung zu prüfen, musste man immer wieder das ursprüngliche Horizon-Blast-Symbol unten rechts im Infobereich öffnen. Blast Pulse hält die relevanten Informationen direkt auf dem Desktop sichtbar, damit sich die Sitzung während der Arbeit beobachten lässt.
 
 Die kompakte Anzeige zeigt Verbindungsdetails sowie Blast-FPS, Antwortzeit (RTT) und Uplink-Paketverlust. Live-Zähler werden standardmässig jede Sekunde aktualisiert. Die transparente Anzeige liegt unten rechts auf dem primären Desktop unter normalen Anwendungsfenstern. Das Hintergrundbild bleibt erhalten und wird nicht bei jeder Aktualisierung neu geschrieben.
+
+## NVIDIA-Preview — 1.2
+
+[Preview-EXE herunterladen](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0-preview.1/BlastPulse.exe) · [Preview-ZIP herunterladen](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0-preview.1/BlastPulse-1.2.0-preview.1-win-x64.zip) · [Release Notes](https://github.com/vmmachina/blastpulse/releases/tag/v1.2.0-preview.1)
+
+Blast Pulse kann die GPU- und Lizenzangaben des NVIDIA-Treibers jetzt neben der Horizon-Sitzung anzeigen:
+
+- **GPU-Anzahl, GPU-Name, Virtualisierungsmodus, Treiberversion, Lizenzprodukt und Lizenzstatus.**
+- Eigene Bereiche für Horizon und NVIDIA, mit violetten Trennlinien und farbigen Lizenz-Badges.
+- Eine kompakte Modus-Legende auf Englisch und Deutsch:
+
+| Code | Modus |
+| --- | --- |
+| `0` | Native GPU |
+| `1` | Passthrough |
+| `2` | vGPU Guest |
+| `3` | vGPU Host |
+| `4` | vSGA Host |
+
+NVIDIA-Daten werden alle **30 Sekunden** unabhängig von den Blast-Livezählern gelesen. Jede im Gast sichtbare GPU wird einzeln aufgeführt. Ohne installierte NVIDIA-NVML-Bibliothek bleibt die bisherige Horizon-Anzeige erhalten. Bestehende `config.json`-Dateien können weiterverwendet werden.
+
+**Dies ist eine Preview zum Testen unter Windows 10/11 x64 mit .NET Framework 4.8.** Vor dem Start die bisherige Tray-Instanz beenden. Die integrierte NVIDIA-Anzeige und die automatischen Windows-Prüfungen sind noch nicht validiert. Version **1.1 bleibt der stabile Release**.
 
 ## Neu in 1.1
 
@@ -20,7 +43,7 @@ Die kompakte Anzeige zeigt Verbindungsdetails sowie Blast-FPS, Antwortzeit (RTT)
 
 <p align="center"><img src="assets/screenshot-desktop.png" alt="Blast Pulse unten rechts auf einem Windows-Desktop neben einem Videofenster" width="1100"></p>
 
-Beispielsitzung während der Videowiedergabe. Messwerte und Log-Zeitstempel unterscheiden sich je nach Sitzung.
+Blast Pulse 1.1 während der Videowiedergabe. Messwerte und Log-Zeitstempel unterscheiden sich je nach Sitzung; die Screenshots zeigen die NVIDIA-Preview noch nicht.
 
 <details>
 <summary>Verbindungsdetails — Nahaufnahme</summary>
@@ -29,7 +52,7 @@ Beispielsitzung während der Videowiedergabe. Messwerte und Log-Zeitstempel unte
 
 </details>
 
-## Herunterladen und starten
+## Stabiler Release 1.1 — herunterladen und starten
 
 [Blast Pulse 1.1 für Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse-1.1.0-win-x64.zip) herunterladen. Das Paket enthält die Anwendung, eine Beispielkonfiguration und die Dokumentation auf Englisch und Deutsch. Zum Offline-Lesen das ZIP entpacken und `README.html` im Browser öffnen; die Links English/Deutsch oben wechseln die Sprache.
 
@@ -116,6 +139,22 @@ Fehlt im aktuellen Logabschnitt ein passender Qualitäts-Eintrag, zeigen Transpo
 
 Der angezeigte Verbindungstransport stammt aus dem Log. Er wird nicht aus der momentanen Datenverkehrsaktivität abgeleitet.
 
+### NVIDIA-Daten — Preview 1.2
+
+Der NVIDIA-Bereich liest die **NVML**-Bibliothek des installierten Treibers lokal aus. Er startet kein `nvidia-smi`, fragt den DLS-Server nicht ab und ändert keine Lizenzeinstellungen. Blast Pulse liefert keine NVIDIA-Bibliothek mit.
+
+| NVIDIA-Information | NVML-Quelle |
+| --- | --- |
+| GPU-Anzahl | `nvmlDeviceGetCount_v2` — im Windows-Gast sichtbare Geräte |
+| GPU-Name | `nvmlDeviceGetName` |
+| Virtualisierungsmodus | `nvmlDeviceGetVirtualizationMode` |
+| Treiberversion | `nvmlSystemGetDriverVersion` |
+| Lizenzprodukt und Lizenzstatus | `nvmlDeviceGetGridLicensableFeatures_v4` — Produktname, Aktivierungskennzeichen und Lizenzstatus |
+
+Ein unterstütztes, aktiviertes Feature erscheint entsprechend der Treibermeldung als **Lizenziert** oder **Nicht lizenziert**. Deaktivierte Features und nicht unterstützte Lizenzierung werden gesondert ausgewiesen. Ist eine Abfrage nicht verfügbar oder der Datenstand älter als 90 Sekunden, erscheint **Unbekannt**. Die Abfrage läuft in einem eigenen Prozess mit zehn Sekunden Zeitlimit, damit ein hängender Treiberaufruf die Blast-Messungen nicht aufhält.
+
+**Lizenziert** beschreibt den vom Gasttreiber gemeldeten Zustand. Das belegt für sich allein keine aktuelle Verbindung zu NVIDIA DLS. Blast Pulse liest keine Lizenz-Token-Dateien und ruft keine APIs für UUIDs, Seriennummern oder Lizenzserver-Verwaltung auf. Token, GPU-UUIDs, Seriennummern und Serveradressen erscheinen nicht in der Anzeige.
+
 ## Kompatibilität
 
 Blast Pulse 1.1 für Windows x64.
@@ -130,3 +169,6 @@ Automatische Windows-Darstellungsprüfungen waren bei 100, 125, 150, 200 und 300
 
 - [Omnissa: Blast-Leistungszähler](https://docs.omnissa.com/de-DE/Horizon-Remote-Desktop-Features-V2606/ExaminingBlastSessionStatisticswithWindowsPerformanceMonitor)
 - [Omnissa: Blast-Logs und Paketverlust](https://kb.omnissa.com/s/article/89455)
+
+- [NVIDIA: NVML-vGPU-Abfragen](https://docs.nvidia.com/deploy/nvml-api/latest/api/group__nvmlVirtualGpuQueries.html)
+- [NVIDIA: vGPU-Lizenzierung und Fehlersuche](https://docs.nvidia.com/vgpu/latest/grid-licensing-user-guide/troubleshooting-grid-licensing.html)

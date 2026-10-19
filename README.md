@@ -1,14 +1,37 @@
 <div align="center">
 <p><img src="assets/banner-en.png" alt="Blast Pulse — Omnissa Horizon" width="1200"></p>
 <p>by <strong>Stefan Gourguis</strong> · Omnissa Tech Insider · solvig. GmbH · solvig.ch</p>
-<p><kbd>Version 1.1</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.x</kbd></p>
+<p><kbd>Stable 1.1</kbd> &nbsp; <kbd>Preview 1.2</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.x</kbd></p>
 <p><a href="https://github.com/vmmachina/blastpulse/blob/main/README.md"><kbd>English</kbd></a> | <a href="https://github.com/vmmachina/blastpulse/blob/main/README.de.md"><kbd>Deutsch</kbd></a></p>
 <p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse.exe"><img src="assets/download-exe-en.png" alt="Download EXE" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse-1.1.0-win-x64.zip"><img src="assets/download-zip-en.png" alt="Download Windows ZIP" width="280"></a></p>
+<p><strong>NVIDIA preview 1.2:</strong> <a href="https://github.com/vmmachina/blastpulse/releases/tag/v1.2.0-preview.1">Downloads and release notes</a></p>
 </div>
 
 The idea came from a simple inconvenience: checking a connection meant repeatedly opening the original Horizon Blast tray icon at the bottom right of the screen. Blast Pulse keeps the relevant information visible on the desktop, so you can follow your session while you work.
 
 The compact display shows connection details alongside Blast FPS, round-trip time (RTT) and uplink packet loss. Live counters refresh every second by default. It appears as a transparent layer at the bottom right of the primary desktop, beneath ordinary application windows. Your wallpaper remains the background; it is not rewritten for each update.
+
+## NVIDIA preview — 1.2
+
+[Download preview EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0-preview.1/BlastPulse.exe) · [Download preview ZIP](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0-preview.1/BlastPulse-1.2.0-preview.1-win-x64.zip) · [Release notes](https://github.com/vmmachina/blastpulse/releases/tag/v1.2.0-preview.1)
+
+Blast Pulse can now show the NVIDIA driver's GPU and licensing information alongside the Horizon session:
+
+- **GPU count, GPU name, Virtualization mode, Driver version, Licensed product and License status.**
+- Separate Horizon and NVIDIA sections, with violet dividers and coloured license badges.
+- A compact mode key, available in English and German:
+
+| Code | Mode |
+| --- | --- |
+| `0` | Native GPU |
+| `1` | Passthrough |
+| `2` | vGPU Guest |
+| `3` | vGPU Host |
+| `4` | vSGA Host |
+
+NVIDIA data refreshes every **30 seconds**, independently of the live Blast counters. Each GPU visible to the guest is listed separately. Without an installed NVIDIA NVML library, the Horizon display stays as before. Existing `config.json` files can be kept.
+
+**This is a preview for testing on Windows 10/11 x64 with .NET Framework 4.8.** Exit the current tray instance before starting it. The integrated NVIDIA display and automated Windows checks are still awaiting validation. Version **1.1 remains the stable release**.
 
 ## What’s new in 1.1
 
@@ -20,7 +43,7 @@ The compact display shows connection details alongside Blast FPS, round-trip tim
 
 <p align="center"><img src="assets/screenshot-desktop.png" alt="Blast Pulse in the bottom-right corner of a Windows desktop alongside a video window" width="1100"></p>
 
-Example session during video playback. Metrics and log timestamps vary by session.
+Blast Pulse 1.1 during video playback. Metrics and log timestamps vary by session; these screenshots do not yet show the NVIDIA preview.
 
 <details>
 <summary>Connection details — close-up</summary>
@@ -29,7 +52,7 @@ Example session during video playback. Metrics and log timestamps vary by sessio
 
 </details>
 
-## Download and start
+## Stable 1.1 — download and start
 
 Download [Blast Pulse 1.1 for Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.1.0/BlastPulse-1.1.0-win-x64.zip). The package contains the application, an example configuration and English/German documentation. For offline reading, extract the ZIP and open `README.html` in your browser; use the English/Deutsch links at the top to change language.
 
@@ -116,6 +139,22 @@ If the current log section contains no matching quality entry, transport and qua
 
 The displayed connection transport is the backend recorded in the log. It is not inferred from momentary traffic activity.
 
+### NVIDIA data — 1.2 preview
+
+The NVIDIA section reads the installed driver's **NVML** library locally. It does not launch `nvidia-smi`, query the DLS server or change licensing settings. No NVIDIA library is bundled with Blast Pulse.
+
+| NVIDIA information | NVML source |
+| --- | --- |
+| GPU count | `nvmlDeviceGetCount_v2` — devices visible inside the Windows guest |
+| GPU name | `nvmlDeviceGetName` |
+| Virtualization mode | `nvmlDeviceGetVirtualizationMode` |
+| Driver version | `nvmlSystemGetDriverVersion` |
+| Licensed product and license status | `nvmlDeviceGetGridLicensableFeatures_v4` — product name, enabled flag and license state |
+
+A supported, enabled feature is shown as **Licensed** or **Unlicensed**, as reported by the driver. Disabled features and unsupported licensing are identified separately. An unavailable query or a sample older than 90 seconds produces **Unknown**, rather than a guessed license state. The query runs in a separate process with a 10-second timeout so a stalled driver call does not hold up Blast sampling.
+
+A **Licensed** guest does not by itself prove a current connection to NVIDIA DLS; it describes the guest driver's reported license state. Blast Pulse does not read license-token files or call UUID, serial-number or license-server administration APIs. Tokens, GPU UUIDs, serial numbers and server addresses are not included in the display.
+
 ## Compatibility
 
 Blast Pulse 1.1 for Windows x64.
@@ -130,3 +169,6 @@ Automated Windows rendering checks passed at 100%, 125%, 150%, 200% and 300% sca
 
 - [Omnissa: Blast performance counters](https://docs.omnissa.com/de-DE/Horizon-Remote-Desktop-Features-V2606/ExaminingBlastSessionStatisticswithWindowsPerformanceMonitor)
 - [Omnissa: Blast logs and packet loss](https://kb.omnissa.com/s/article/89455)
+
+- [NVIDIA: NVML vGPU queries](https://docs.nvidia.com/deploy/nvml-api/latest/api/group__nvmlVirtualGpuQueries.html)
+- [NVIDIA: vGPU licensing troubleshooting](https://docs.nvidia.com/vgpu/latest/grid-licensing-user-guide/troubleshooting-grid-licensing.html)
