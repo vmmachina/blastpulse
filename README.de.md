@@ -20,25 +20,13 @@ Die kompakte Anzeige zeigt Verbindungsdetails sowie Blast-FPS, Antwortzeit (RTT)
 
 ## Im Einsatz
 
-<p align="center"><img src="assets/screenshot-desktop.png" alt="Blast Pulse unten rechts auf einem Windows-Desktop neben einem Videofenster" width="1100"></p>
+<p align="center"><img src="assets/screenshot-nvidia.png" alt="Blast Pulse 1.2 mit NVIDIA A2-16Q, Treiber 581.42, vGPU-Gastmodus und dem Lizenzstatus Unlicensed" width="900"></p>
+
+NVIDIA-GPU- und Lizenzangaben bei 192 DPI. Der Lizenzstatus stammt vom Gasttreiber.
+
+<p align="center"><img src="assets/screenshot-desktop.png" alt="Blast Pulse auf dem Desktop neben einem Video der Omnissa-ONE-Keynote" width="1100"></p>
 
 Horizon-Sitzung während der Videowiedergabe. Messwerte und Log-Zeitstempel unterscheiden sich je nach Sitzung.
-
-<details>
-<summary>Verbindungsdetails — Nahaufnahme</summary>
-
-<p align="center"><img src="assets/screenshot-details.png" alt="Nahaufnahme von Blast Pulse mit Codec, Aufnahmeverfahren, Bildschirmkonfiguration, Transport, Qualität, FPS, RTT und Paketverlust" width="640"></p>
-
-</details>
-
-<details>
-<summary>NVIDIA-GPU und Lizenzierung — Screenshot</summary>
-
-<p align="center"><img src="assets/screenshot-nvidia.png" alt="Blast Pulse 1.2 mit NVIDIA A2-16Q, Treiber 581.42, vGPU-Gastmodus und dem Lizenzstatus Unlicensed" width="640"></p>
-
-Nutzertest bei 192 DPI. Der abgebildete Lizenzstatus stammt vom Gasttreiber.
-
-</details>
 
 ## Herunterladen und starten
 

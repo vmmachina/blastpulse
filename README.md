@@ -20,25 +20,13 @@ The compact display shows connection details alongside Blast FPS, round-trip tim
 
 ## In action
 
-<p align="center"><img src="assets/screenshot-desktop.png" alt="Blast Pulse in the bottom-right corner of a Windows desktop alongside a video window" width="1100"></p>
+<p align="center"><img src="assets/screenshot-nvidia.png" alt="Blast Pulse 1.2 showing NVIDIA A2-16Q, driver 581.42, vGPU Guest mode and an Unlicensed badge" width="900"></p>
+
+NVIDIA GPU and licensing information, shown at 192 DPI. The license state comes from the guest driver.
+
+<p align="center"><img src="assets/screenshot-desktop.png" alt="Blast Pulse on the desktop beside a video of the Omnissa ONE keynote" width="1100"></p>
 
 Horizon session during video playback. Metrics and log timestamps vary by session.
-
-<details>
-<summary>Connection details — close-up</summary>
-
-<p align="center"><img src="assets/screenshot-details.png" alt="Close-up of Blast Pulse showing codec, capture method, display configuration, transport, quality, FPS, RTT and packet loss" width="640"></p>
-
-</details>
-
-<details>
-<summary>NVIDIA GPU and licensing — screenshot</summary>
-
-<p align="center"><img src="assets/screenshot-nvidia.png" alt="Blast Pulse 1.2 showing NVIDIA A2-16Q, driver 581.42, vGPU Guest mode and an Unlicensed badge" width="640"></p>
-
-User test at 192 DPI. The license state shown is the guest driver's report.
-
-</details>
 
 ## Download and start
 
