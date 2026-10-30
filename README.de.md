@@ -1,20 +1,20 @@
 <div align="center">
 <p><img src="assets/banner-de.png" alt="Blast Pulse — Omnissa Horizon" width="1200"></p>
 <p>by <strong>Stefan Gourguis</strong> · Omnissa Tech Insider · solvig. GmbH · solvig.ch</p>
-<p><kbd>Version 1.2</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.8</kbd></p>
+<p><kbd>Version 1.2.1</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.8</kbd></p>
 <p><a href="https://github.com/vmmachina/blastpulse/blob/main/README.md"><kbd>English</kbd></a> | <a href="https://github.com/vmmachina/blastpulse/blob/main/README.de.md"><kbd>Deutsch</kbd></a></p>
-<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.2.0/BlastPulse.exe"><img src="assets/download-exe-de.png" alt="EXE herunterladen" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.2.0/BlastPulse-1.2.0-win-x64.zip"><img src="assets/download-zip-de.png" alt="Windows-ZIP herunterladen" width="280"></a></p>
+<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.2.1/BlastPulse.exe"><img src="assets/download-exe-de.png" alt="EXE herunterladen" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.2.1/BlastPulse-1.2.1-win-x64.zip"><img src="assets/download-zip-de.png" alt="Windows-ZIP herunterladen" width="280"></a></p>
 </div>
 
 Die Idee entstand aus einer einfachen Unannehmlichkeit: Um die Verbindung zu prüfen, musste man immer wieder das ursprüngliche Horizon-Blast-Symbol unten rechts im Infobereich öffnen. Blast Pulse hält die relevanten Informationen direkt auf dem Desktop sichtbar, damit sich die Sitzung während der Arbeit beobachten lässt.
 
 Die kompakte Anzeige zeigt Verbindungsdetails sowie Blast-FPS, Antwortzeit (RTT) und Uplink-Paketverlust. Live-Zähler werden standardmässig jede Sekunde aktualisiert. Die transparente Anzeige liegt unten rechts auf dem primären Desktop unter normalen Anwendungsfenstern. Das Hintergrundbild bleibt erhalten und wird nicht bei jeder Aktualisierung neu geschrieben.
 
-## Aktueller Release — 1.2
+## Aktueller Release — 1.2.1
 
-- NVIDIA-GPU-Anzahl, GPU-Name, Virtualisierungsmodus, Treiberversion, Lizenzprodukt und Lizenzstatus.
-- Getrennte Horizon-/NVIDIA-Bereiche mit violetten Trennlinien und farbigen Lizenz-Badges.
-- NVIDIA-Abfrage alle 30 Sekunden, unabhängig von den Blast-Livezählern.
+- Behebt den sporadischen Fehler „Windows desktop was not found“ beim Benutzer-Login.
+- Sucht und validiert den Explorer-Desktop im Hintergrund, mit begrenzten Wiederholungen statt einer festen Startverzögerung.
+- Behandelt verlorene Desktop-Fenster sowie Shell-/Sitzungsänderungen; Diagnosedetails stehen in `%LOCALAPPDATA%\BlastPulse\desktop.log`.
 
 [Downloads und vollständige Release Notes](https://github.com/vmmachina/blastpulse/releases/latest)
 
@@ -30,9 +30,9 @@ Horizon-Sitzung während der Videowiedergabe. Messwerte und Log-Zeitstempel unte
 
 ## Herunterladen und starten
 
-[Blast Pulse 1.2 für Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0/BlastPulse-1.2.0-win-x64.zip) herunterladen. Das Paket enthält die Anwendung, eine Beispielkonfiguration und die Dokumentation auf Englisch und Deutsch. Zum Offline-Lesen das ZIP entpacken und `README.html` im Browser öffnen; die Links English/Deutsch oben wechseln die Sprache.
+[Blast Pulse 1.2.1 für Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.2.1/BlastPulse-1.2.1-win-x64.zip) herunterladen. Das Paket enthält die Anwendung, eine Beispielkonfiguration und die Dokumentation auf Englisch und Deutsch. Zum Offline-Lesen das ZIP entpacken und `README.html` im Browser öffnen; die Links English/Deutsch oben wechseln die Sprache.
 
-Auf der [Release-Seite](https://github.com/vmmachina/blastpulse/releases/tag/v1.2.0) stehen auch die [einzelne EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0/config.json) und [SHA-256-Prüfsummen](https://github.com/vmmachina/blastpulse/releases/download/v1.2.0/SHA256SUMS.txt) bereit.
+Auf der [Release-Seite](https://github.com/vmmachina/blastpulse/releases/tag/v1.2.1) stehen auch die [einzelne EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.2.1/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.2.1/config.json) und [SHA-256-Prüfsummen](https://github.com/vmmachina/blastpulse/releases/download/v1.2.1/SHA256SUMS.txt) bereit.
 
 Voraussetzungen sind Windows 10/11 x64, .NET Framework 4.8 und eine aktive Horizon-Blast-Sitzung mit lesbaren Sitzungszählern und Logs. Die Anwendung ist unsigniert.
 
@@ -81,6 +81,8 @@ start "" "\\example.com\SYSVOL\example.com\scripts\BlastPulse\BlastPulse.exe"
 ```
 
 Den Beispielpfad durch den eigenen UNC- oder lokalen Pfad ersetzen. Blast Pulse bleibt in der Benutzersitzung aktiv; das Anmeldeskript sollte deshalb nicht auf das Ende der Anwendung warten. Die Anwendung richtet selbst keinen Autostart ein. Bestehendes BGInfo kann parallel laufen; mit `BottomOffset` lässt sich genügend Platz dafür freihalten.
+
+Eine feste Verzögerung im Anmeldeskript ist nicht nötig. Startet Explorer noch, prüft Blast Pulse ohne UI-Blockierung erneut, für maximal zwei Minuten pro Initialisierung. Danach enden die Timer-Versuche; neue Shell-/Sitzungsereignisse oder **Desktop-Anzeige einblenden** können eine neue Erkennung auslösen. Fehler und Wiederherstellung stehen in `%LOCALAPPDATA%\BlastPulse\desktop.log`.
 
 Für ein Update Blast Pulse beenden, die EXE ersetzen und erneut starten. Die bestehende `config.json` beibehalten, damit die Positionierung erhalten bleibt. Vor einer breiteren Verteilung den Freigabezugriff und die Anwendungsrichtlinien der eigenen Organisation prüfen.
 
@@ -133,7 +135,9 @@ Ein unterstütztes, aktiviertes Feature erscheint entsprechend der Treibermeldun
 
 ## Kompatibilität
 
-Blast Pulse 1.2 für Windows x64.
+Blast Pulse 1.2.1 für Windows x64.
+
+Windows-Build und automatisierte Desktop-Lebenszyklustests waren erfolgreich, einschliesslich eines nativen Tests mit zerstörtem Owner-/Anzeigefenster. Echter GPO-Login, Explorer-Neustart, Horizon-/RDP-Reconnect und schneller Benutzerwechsel mit 1.2.1 sind auf der betroffenen VDI noch nicht manuell geprüft.
 
 Die NVIDIA-Anzeige wurde in einer Horizon-vGPU-Sitzung mit NVIDIA A2-16Q, Treiber 581.42 und 192 DPI geprüft. Alle sechs NVIDIA-Werte waren sichtbar; der Treiber meldete **Nicht lizenziert**. Andere Lizenzzustände und mehrere GPUs wurden noch nicht an echter Hardware geprüft. Die automatischen Windows-Regressionsprüfungen für den Quellstand von 1.2 waren erfolgreich, einschliesslich Lizenzstatus, Abfrage-Zeitlimit, englischer/deutscher Anzeige und DPI-Layouts.
 

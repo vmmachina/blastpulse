@@ -1,5 +1,5 @@
 Blast Pulse - by Stefan Gourguis
-Version 1.2
+Version 1.2.1
 
 Horizon-Blast-Verbindungsdaten direkt auf dem Desktop im Blick.
 
@@ -8,11 +8,12 @@ rechts zu öffnen, sollen die relevanten Angaben auf dem Desktop sichtbar
 bleiben. Blast Pulse zeigt Verbindungsdetails, Blast-FPS, RTT und Paketverlust
 als transparente Live-Anzeige unter normalen Anwendungsfenstern.
 
-Neu in 1.2
-  NVIDIA: GPU-Anzahl, GPU-Name, Virtualisierungsmodus, Treiberversion,
-  Lizenzprodukt und Lizenzstatus. Eigener Bereich mit violetten Trennlinien,
-  farbigen Lizenz-Badges und kurzer Modus-Legende.
-  NVIDIA-Abfrage alle 30 Sekunden, unabhängig von den Blast-Livezählern.
+Neu in 1.2.1
+  Behebt den sporadischen Startfehler bei noch nicht bereitem Explorer.
+  Desktop-Erkennung im Hintergrund mit begrenzten Wiederholungen und
+  Reaktionen auf Shell-/Sitzungsereignisse, ohne feste Startverzögerung.
+  Verlorene Desktop-/Anzeigefenster werden erneut angebunden.
+  Diagnose: %LOCALAPPDATA%\BlastPulse\desktop.log.
 
 Start
   ZIP entpacken und BlastPulse.exe innerhalb der Horizon-Blast-Sitzung starten.
@@ -48,6 +49,9 @@ Start bei der Anmeldung
   start "" "\\example.com\SYSVOL\example.com\scripts\BlastPulse\BlastPulse.exe"
   Den Beispielpfad ersetzen. Die Anwendung richtet selbst keinen Autostart ein.
   Das Skript darf nicht auf das Ende des dauerhaft laufenden Programms warten.
+  Keine feste Verzögerung im Anmeldeskript nötig. Bei noch nicht bereitem
+  Explorer maximal zwei Minuten pro Initialisierung erneut prüfen; danach
+  nur bei neuer Shell-/Sitzungsaktivität oder bewusstem Einblenden.
   Beim Update Blast Pulse beenden, EXE ersetzen, eigene config.json behalten
   und erneut starten.
 
@@ -72,6 +76,9 @@ Datenquellen und Bedeutung
   eine unerkannte Logzeit wird separat angezeigt. Keine eigene Ersatzbewertung.
 
 Kompatibilität
+  Desktop-Lebenszyklus, Handle-Verlust und bestehende Regressionen auf Windows
+  automatisiert geprüft. Echter GPO-Login, Explorer-Neustart und Horizon-/
+  RDP-Reconnect mit 1.2.1 auf der betroffenen VDI noch manuell prüfen.
   Eine zentrale Verteilung vor dem Rollout in der eigenen Umgebung testen.
   Die Anzeige nutzt den primären Bildschirm. NVIDIA-Anzeige im Nutzertest:
   A2-16Q, Treiber 581.42, 192 DPI, Lizenzstatus Unlicensed. Andere
