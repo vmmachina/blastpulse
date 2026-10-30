@@ -1,5 +1,5 @@
 Blast Pulse - by Stefan Gourguis
-Version 1.2.1
+Version 1.3.0
 
 Horizon-Blast-Verbindungsdaten direkt auf dem Desktop im Blick.
 
@@ -8,12 +8,12 @@ rechts zu öffnen, sollen die relevanten Angaben auf dem Desktop sichtbar
 bleiben. Blast Pulse zeigt Verbindungsdetails, Blast-FPS, RTT und Paketverlust
 als transparente Live-Anzeige unter normalen Anwendungsfenstern.
 
-Neu in 1.2.1
-  Behebt den sporadischen Startfehler bei noch nicht bereitem Explorer.
-  Desktop-Erkennung im Hintergrund mit begrenzten Wiederholungen und
-  Reaktionen auf Shell-/Sitzungsereignisse, ohne feste Startverzögerung.
-  Verlorene Desktop-/Anzeigefenster werden erneut angebunden.
-  Diagnose: %LOCALAPPDATA%\BlastPulse\desktop.log.
+Neu in 1.3.0
+  Blast-Datagrammmaximum sowie sichere TX-/RX-Größen aus dem Agent-Log,
+  jeweils mit eigenem Logzeitpunkt. Kein gemessener IP-/Pfad-MTU-Wert.
+  Worker-Zuordnung per lokalem WMI-Fallback, wenn die direkte Startzeit-
+  abfrage verweigert wird, ohne erhöhte Rechte oder Berechtigungsänderungen.
+  Verbesserte Verbindungszuordnung bei verspäteten/doppelten Trennungsmeldungen.
 
 Start
   ZIP entpacken und BlastPulse.exe innerhalb der Horizon-Blast-Sitzung starten.
@@ -57,8 +57,14 @@ Start bei der Anmeldung
 
 Datenquellen und Bedeutung
   Lokale WMI-Leistungszähler liefern RTT, Uplink-Paketverlust und Blast-FPS.
-  Das Blast-Worker-Log liefert Codec, Aufnahmeverfahren, Transport und
-  Horizon-Qualitätsstatus; Windows liefert die Bildschirmangaben.
+  Das Blast-Worker-Log liefert Codec, Aufnahmeverfahren, Transport,
+  Horizon-Qualitätsstatus und die drei Datagrammgrößen. Windows liefert
+  Bildschirmangaben und Worker-Identität. Datagrammwerte werden nur bei
+  geprüftem Sitzungs-/Worker-/Verbindungskontext übernommen. TX bedeutet
+  Agent zum Client, RX Client zum Agent. Neue passende Logeinträge werden
+  gemäß LogRefreshSeconds übernommen; unveränderte behalten ihre Meldezeit.
+  Ohne passenden Kontext erscheint Nicht gemeldet. Kein MTU-Test und
+  keine Änderungen an Netzwerk- oder Horizon-Einstellungen.
   NVIDIA-Daten stammen aus der installierten NVML-Bibliothek des Treibers,
   Lizenzangaben aus nvmlDeviceGetGridLicensableFeatures_v4. Ohne installierte
   NVML-Bibliothek bleibt die bisherige Horizon-Anzeige erhalten. Eine vom
@@ -76,9 +82,10 @@ Datenquellen und Bedeutung
   eine unerkannte Logzeit wird separat angezeigt. Keine eigene Ersatzbewertung.
 
 Kompatibilität
-  Desktop-Lebenszyklus, Handle-Verlust und bestehende Regressionen auf Windows
-  automatisiert geprüft. Echter GPO-Login, Explorer-Neustart und Horizon-/
-  RDP-Reconnect mit 1.2.1 auf der betroffenen VDI noch manuell prüfen.
+  Windows-Build und Regressionen einschließlich Datagramm-/Worker-Prüfungen
+  erfolgreich. Nutzertest: alle drei Datagrammwerte mit 1372 Bytes sichtbar.
+  Echter Größenwechsel und das Reconnect-Verhalten der korrigierten EXE
+  noch nicht manuell bestätigt; breitere GPO-/Explorer-Prüfung bleibt offen.
   Eine zentrale Verteilung vor dem Rollout in der eigenen Umgebung testen.
   Die Anzeige nutzt den primären Bildschirm. NVIDIA-Anzeige im Nutzertest:
   A2-16Q, Treiber 581.42, 192 DPI, Lizenzstatus Unlicensed. Andere

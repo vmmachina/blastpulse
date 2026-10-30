@@ -1,20 +1,20 @@
 <div align="center">
 <p><img src="assets/banner-de.png" alt="Blast Pulse — Omnissa Horizon" width="1200"></p>
 <p>by <strong>Stefan Gourguis</strong> · Omnissa Tech Insider · solvig. GmbH · solvig.ch</p>
-<p><kbd>Version 1.2.1</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.8</kbd></p>
+<p><kbd>Version 1.3.0</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.8</kbd></p>
 <p><a href="https://github.com/vmmachina/blastpulse/blob/main/README.md"><kbd>English</kbd></a> | <a href="https://github.com/vmmachina/blastpulse/blob/main/README.de.md"><kbd>Deutsch</kbd></a></p>
-<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.2.1/BlastPulse.exe"><img src="assets/download-exe-de.png" alt="EXE herunterladen" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.2.1/BlastPulse-1.2.1-win-x64.zip"><img src="assets/download-zip-de.png" alt="Windows-ZIP herunterladen" width="280"></a></p>
+<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.3.0/BlastPulse.exe"><img src="assets/download-exe-de.png" alt="EXE herunterladen" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.3.0/BlastPulse-1.3.0-win-x64.zip"><img src="assets/download-zip-de.png" alt="Windows-ZIP herunterladen" width="280"></a></p>
 </div>
 
 Die Idee entstand aus einer einfachen Unannehmlichkeit: Um die Verbindung zu prüfen, musste man immer wieder das ursprüngliche Horizon-Blast-Symbol unten rechts im Infobereich öffnen. Blast Pulse hält die relevanten Informationen direkt auf dem Desktop sichtbar, damit sich die Sitzung während der Arbeit beobachten lässt.
 
 Die kompakte Anzeige zeigt Verbindungsdetails sowie Blast-FPS, Antwortzeit (RTT) und Uplink-Paketverlust. Live-Zähler werden standardmässig jede Sekunde aktualisiert. Die transparente Anzeige liegt unten rechts auf dem primären Desktop unter normalen Anwendungsfenstern. Das Hintergrundbild bleibt erhalten und wird nicht bei jeder Aktualisierung neu geschrieben.
 
-## Aktueller Release — 1.2.1
+## Aktueller Release — 1.3.0
 
-- Behebt den sporadischen Fehler „Windows desktop was not found“ beim Benutzer-Login.
-- Sucht und validiert den Explorer-Desktop im Hintergrund, mit begrenzten Wiederholungen statt einer festen Startverzögerung.
-- Behandelt verlorene Desktop-Fenster sowie Shell-/Sitzungsänderungen; Diagnosedetails stehen in `%LOCALAPPDATA%\BlastPulse\desktop.log`.
+- Ergänzt das ausgehandelte Blast-Datagrammmaximum und sichere TX-/RX-Größen mit jeweils eigenem Logzeitpunkt.
+- Behebt die Worker-Zuordnung bei verweigerter direkter Startzeitabfrage; ein lokaler WMI-Fallback liefert die Identität ohne erhöhte Rechte.
+- Korrigiert die Verbindungszuordnung bei verspäteten oder mehrfachen Trennungsmeldungen.
 
 [Downloads und vollständige Release Notes](https://github.com/vmmachina/blastpulse/releases/latest)
 
@@ -30,9 +30,9 @@ Horizon-Sitzung während der Videowiedergabe. Messwerte und Log-Zeitstempel unte
 
 ## Herunterladen und starten
 
-[Blast Pulse 1.2.1 für Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.2.1/BlastPulse-1.2.1-win-x64.zip) herunterladen. Das Paket enthält die Anwendung, eine Beispielkonfiguration und die Dokumentation auf Englisch und Deutsch. Zum Offline-Lesen das ZIP entpacken und `README.html` im Browser öffnen; die Links English/Deutsch oben wechseln die Sprache.
+[Blast Pulse 1.3.0 für Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.3.0/BlastPulse-1.3.0-win-x64.zip) herunterladen. Das Paket enthält die Anwendung, eine Beispielkonfiguration und die Dokumentation auf Englisch und Deutsch. Zum Offline-Lesen das ZIP entpacken und `README.html` im Browser öffnen; die Links English/Deutsch oben wechseln die Sprache.
 
-Auf der [Release-Seite](https://github.com/vmmachina/blastpulse/releases/tag/v1.2.1) stehen auch die [einzelne EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.2.1/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.2.1/config.json) und [SHA-256-Prüfsummen](https://github.com/vmmachina/blastpulse/releases/download/v1.2.1/SHA256SUMS.txt) bereit.
+Auf der [Release-Seite](https://github.com/vmmachina/blastpulse/releases/tag/v1.3.0) stehen auch die [einzelne EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.3.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.3.0/config.json) und [SHA-256-Prüfsummen](https://github.com/vmmachina/blastpulse/releases/download/v1.3.0/SHA256SUMS.txt) bereit.
 
 Voraussetzungen sind Windows 10/11 x64, .NET Framework 4.8 und eine aktive Horizon-Blast-Sitzung mit lesbaren Sitzungszählern und Logs. Die Anwendung ist unsigniert.
 
@@ -109,13 +109,31 @@ Die Logdatei liegt unter:
 %ProgramData%\Omnissa\Horizon\Logs\Blast-Worker-SessionId<Sitzungs-ID>.log
 ```
 
-Gelesen werden höchstens die letzten 4 MiB. Logwerte stammen aus dem jeweils letzten passenden Eintrag dieses Abschnitts und können älter als die aktuellen Leistungszähler sein. Der Codec-Name stammt direkt aus dem Log; eine Zuordnung numerischer Encoder-IDs wird nicht angenommen.
+Für Codec, Aufnahme und Qualität werden höchstens die letzten 4 MiB gelesen. Diese Logwerte stammen aus dem jeweils letzten passenden Eintrag dieses Abschnitts und können älter als die aktuellen Leistungszähler sein. Der Codec-Name stammt direkt aus dem Log; eine Zuordnung numerischer Encoder-IDs wird nicht angenommen.
 
 Der originale Qualitätsstatus hat einen eigenen Zeitstempel. Er hängt von einem passenden Agent-Logeintrag ab; Blast Pulse fordert keine Aktualisierung beim ursprünglichen Tray-Tool an. Eine kontinuierliche Aktualisierung des Originalstatus ist nicht garantiert. Ein mehr als 90 Sekunden alter Originalstatus wird als älterer Logstand gekennzeichnet. Blast Pulse gibt keine selbst berechnete Bewertung als Horizon-Status aus.
 
 Fehlt im aktuellen Logabschnitt ein passender Qualitäts-Eintrag, zeigen Transport und Qualität **Nicht gemeldet**. Die Fußzeile lautet **Qualitätsstatus: Kein passender Logeintrag**. Das betrifft diesen einzelnen Eintrag; Codec-/Aufnahmeangaben aus dem Log und Live-Zähler können trotzdem verfügbar sein. Bei erkanntem Eintrag steht dessen eigene Meldezeit; ein nicht erkannter Zeitstempel wird gesondert ausgewiesen.
 
 Der angezeigte Verbindungstransport stammt aus dem Log. Er wird nicht aus der momentanen Datenverkehrsaktivität abgeleitet.
+
+### Blast-Datagrammgrößen
+
+Version 1.3.0 liest drei weitere Angaben aus dem Blast-Worker-Log der aktiven Sitzung:
+
+| Anzeige | Logquelle |
+| --- | --- |
+| Blast-Datagrammmaximum | `BlastSocketBuildUDPResponse` — ausgehandeltes Maximum |
+| Sicheres Datagramm TX | `BlastSocketUpdateSafeDatagramSendSize` — Agent → Client |
+| Sicheres Datagramm RX | `BlastSocketUpdateSafeDatagramReceiveSize` — Client → Agent |
+
+Das Log wird gemäß `LogRefreshSeconds` geprüft, standardmäßig alle fünf Sekunden. Jeder Wert behält seinen eigenen **letzten Logzeitpunkt**. Ein neuer passender Eintrag aktualisiert den betreffenden Wert; eine unveränderte Datei wird nicht als neue Messung dargestellt. Die Angaben sind protokollierte Blast-Datagrammgrößen, **keine Messung der IP- oder Pfad-MTU**.
+
+Blast Pulse prüft Sitzung, PID und Startzeit des aktuellen `VMBlastW`-Workers gegen das Log und grenzt den Verbindungsabschnitt ab. Wird der direkte Zugriff auf die Startzeit verweigert, liest es `ProcessId`, `SessionId` und `CreationDate` über den lokalen WMI-Provider `Win32_Process`. Dazu werden keine Rechte erhöht oder Prozessberechtigungen geändert. Ohne eindeutigen Kontext erscheint **Nicht gemeldet**; die Fußzeile nennt den Grund.
+
+Der inkrementelle Leser verarbeitet vollständig angehängte UTF-8-/UTF-16-Zeilen und erkennt Dateiaustausch, Kürzung und Historienlücken. Pro Abfrage werden höchstens 4 MiB und ein kleiner Dateikopf gelesen. Eine neue Verbindung oder ein neuer Worker braucht erneut geprüften Kontext; rotierte Archive werden nicht vermischt. Größenmeldungen enthalten keine Socket-ID und werden dem Worker-/Verbindungsabschnitt zugeordnet, nicht einzelnen parallelen Raw Channels. Aktualisierungen hängen davon ab, was der installierte Agent protokolliert.
+
+Für einen einmaligen JSON-Export `BlastPulse.exe -datagram-json "C:\Pfad\datagram.json"` in der Horizon-Sitzung des Zielbenutzers aufrufen. Die Anwendung schreibt eine Momentaufnahme und beendet sich. Der Export enthält Rechner-/Sitzungskennungen, Worker- und Verbindungskontext, Status sowie die Quellenzeitpunkte der einzelnen Werte; diese Felder sollten ausgewertet werden. Fehlende Größen sind `null`. `DiscoveryMtuBytes` bleibt `null`; protokollierte Such-Standards beweisen keinen abgeschlossenen Suchlauf. Blast Pulse sendet keine MTU-Probes und ändert keine Netzwerkeinstellungen.
 
 ### NVIDIA-Daten
 
@@ -135,9 +153,9 @@ Ein unterstütztes, aktiviertes Feature erscheint entsprechend der Treibermeldun
 
 ## Kompatibilität
 
-Blast Pulse 1.2.1 für Windows x64.
+Blast Pulse 1.3.0 für Windows x64.
 
-Windows-Build und automatisierte Desktop-Lebenszyklustests waren erfolgreich, einschliesslich eines nativen Tests mit zerstörtem Owner-/Anzeigefenster. Echter GPO-Login, Explorer-Neustart, Horizon-/RDP-Reconnect und schneller Benutzerwechsel mit 1.2.1 sind auf der betroffenen VDI noch nicht manuell geprüft.
+Windows-Build und automatisierte Regressionen waren erfolgreich: Worker-Identitäts-Fallback, Datagrammaktualisierungen, Dateirotation/-kürzung, Reconnect-Grenzen sowie die bestehenden Desktop-, DPI-, Sprach- und NVIDIA-Prüfungen. Der Nutzertest bestätigte alle drei Datagrammwerte mit 1372 Bytes in einer laufenden Horizon-Sitzung. Ein echter Größenwechsel während der Sitzung und das Reconnect-Verhalten der korrigierten EXE sind noch nicht manuell bestätigt. Die breitere Prüfung von GPO, Explorer-Neustarts und mehreren Benutzern bleibt begrenzt.
 
 Die NVIDIA-Anzeige wurde in einer Horizon-vGPU-Sitzung mit NVIDIA A2-16Q, Treiber 581.42 und 192 DPI geprüft. Alle sechs NVIDIA-Werte waren sichtbar; der Treiber meldete **Nicht lizenziert**. Andere Lizenzzustände und mehrere GPUs wurden noch nicht an echter Hardware geprüft. Die automatischen Windows-Regressionsprüfungen für den Quellstand von 1.2 waren erfolgreich, einschliesslich Lizenzstatus, Abfrage-Zeitlimit, englischer/deutscher Anzeige und DPI-Layouts.
 
