@@ -1,20 +1,20 @@
 <div align="center">
 <p><img src="assets/banner-en.png" alt="Blast Pulse — Omnissa Horizon" width="1200"></p>
 <p>by <strong>Stefan Gourguis</strong> · Omnissa Tech Insider · solvig. GmbH · solvig.ch</p>
-<p><kbd>Version 1.3.0</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.8</kbd></p>
+<p><kbd>Version 1.4.0</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.8</kbd></p>
 <p><a href="https://github.com/vmmachina/blastpulse/blob/main/README.md"><kbd>English</kbd></a> | <a href="https://github.com/vmmachina/blastpulse/blob/main/README.de.md"><kbd>Deutsch</kbd></a></p>
-<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.3.0/BlastPulse.exe"><img src="assets/download-exe-en.png" alt="Download EXE" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.3.0/BlastPulse-1.3.0-win-x64.zip"><img src="assets/download-zip-en.png" alt="Download Windows ZIP" width="280"></a></p>
+<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.4.0/BlastPulse.exe"><img src="assets/download-exe-en.png" alt="Download EXE" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.4.0/BlastPulse-1.4.0-win-x64.zip"><img src="assets/download-zip-en.png" alt="Download Windows ZIP" width="280"></a></p>
 </div>
 
 The idea came from a simple inconvenience: checking a connection meant repeatedly opening the original Horizon Blast tray icon at the bottom right of the screen. Blast Pulse keeps the relevant information visible on the desktop, so you can follow your session while you work.
 
 The compact display shows connection details alongside Blast FPS, round-trip time (RTT) and uplink packet loss. Live counters refresh every second by default. It appears as a transparent layer at the bottom right of the primary desktop, beneath ordinary application windows. Your wallpaper remains the background; it is not rewritten for each update.
 
-## Latest release — 1.3.0
+## Latest release — 1.4.0
 
-- Adds the negotiated Blast datagram maximum and safe TX/RX sizes, each with its own last log time.
-- Fixes worker verification when Windows denies the direct process start-time query; a local WMI fallback supplies the identity without elevation.
-- Corrects connection tracking when disconnect notifications arrive late or more than once.
+- Displays connection transport and quality directly from the supported Horizon Agent build, without opening the Horizon Blast tray menu.
+- Updates GOOD, OK and POOR as reported by the Agent and shows when the values were checked.
+- Associates connection information with the active session and connection; a matching log entry can be used when a direct value is unavailable.
 
 [Downloads and full release notes](https://github.com/vmmachina/blastpulse/releases/latest)
 
@@ -30,9 +30,9 @@ Horizon session during video playback. Metrics and log timestamps vary by sessio
 
 ## Download and start
 
-Download [Blast Pulse 1.3.0 for Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.3.0/BlastPulse-1.3.0-win-x64.zip). The package contains the application, an example configuration and English/German documentation. For offline reading, extract the ZIP and open `README.html` in your browser; use the English/Deutsch links at the top to change language.
+Download [Blast Pulse 1.4.0 for Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.4.0/BlastPulse-1.4.0-win-x64.zip). The package contains the application, an example configuration and the release notes.
 
-The [release page](https://github.com/vmmachina/blastpulse/releases/tag/v1.3.0) also offers the [standalone EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.3.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.3.0/config.json) and [SHA-256 checksums](https://github.com/vmmachina/blastpulse/releases/download/v1.3.0/SHA256SUMS.txt).
+The [release page](https://github.com/vmmachina/blastpulse/releases/tag/v1.4.0) also offers the [standalone EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.4.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.4.0/config.json) and [SHA-256 checksums](https://github.com/vmmachina/blastpulse/releases/download/v1.4.0/SHA256SUMS.txt).
 
 You need Windows 10/11 x64, .NET Framework 4.8 and an active Horizon Blast session with readable session counters and logs. The application is unsigned.
 
@@ -88,14 +88,14 @@ For an update, exit Blast Pulse, replace the EXE and start it again. Keep your e
 
 ## Data sources
 
-Blast Pulse reads data locally on the Windows desktop. It does not query a Horizon Connection Server API or call the tray tool's internal `wavedll.dll` interface. No credentials are required by Blast Pulse, and it does not upload the collected values to an external service.
+Blast Pulse reads data locally on the Windows desktop. For the tested Agent build it reads transport and quality through the Agent's internal `wavedll.dll` interface; this is not a documented public API and may change. Other builds fall back to matching log information when available. It does not query a Horizon Connection Server API, require credentials or upload collected values to an external service.
 
 | Desktop information | Source |
 | --- | --- |
 | RTT and uplink packet loss | `Win32_PerfFormattedData_Counters_HorizonBlastSessionCounters`: `RTT`, `PacketLossUplink` |
 | Blast FPS | `Win32_PerfFormattedData_Counters_HorizonBlastImagingCounters`: `Framespersecond` |
 | Codec name and screen capture method | Latest matching `Created region encoder` and `Screen capture name` entries in the session's Blast-Worker log |
-| Horizon quality state, score and transport backend | Latest `BlastSocket_GetVvcQualityIndicators` entry: `qualityState`, `qualityScore`, `Backend` and the entry's timestamp |
+| Connection transport and quality | Direct Agent query on the supported build; otherwise a matching session log entry, when available. A log score is only shown with its own log status. |
 | Display driver, resolution and refresh rate | `Win32_VideoController`, filtered to devices whose name contains `Horizon` |
 | Primary screen position and DPI | Windows screen bounds and desktop graphics DPI |
 
@@ -111,11 +111,9 @@ The log file is:
 
 For codec, capture and quality, only the last 4 MiB are read. Those log values represent the latest matching entry in that section and may be older than the current counter readings. The codec name comes directly from the log; no numeric encoder-to-codec mapping is assumed.
 
-**The original Horizon quality status is not guaranteed to update continuously.** It depends on a matching Agent log entry; Blast Pulse does not request an update from the original tray tool. Blast Pulse shows that entry's own timestamp and marks a status older than 90 seconds as an older log state. It does not present a custom rating as Horizon's original status.
+Transport and quality are queried together for the current connection on the tested Agent build. The display shows the query completion time; a direct quality state has no numeric score. If a direct value is unavailable, a matching log observation can be used with its own status, score and source time. Unverified or missing information is identified in the display rather than treated as confirmed.
 
-If the current log section contains no matching quality entry, transport and quality show **Not reported**. The footer says **Quality status: No matching log entry**. This refers specifically to the quality entry; codec/capture log data and live counters can still be available. A recognized entry displays its own report time; an unrecognized timestamp is identified separately.
-
-The displayed connection transport is the backend recorded in the log. It is not inferred from momentary traffic activity.
+A log quality status older than 90 seconds is marked as an older entry. Transport is not inferred from momentary traffic activity.
 
 ### Blast datagram sizes
 
@@ -153,9 +151,9 @@ A **Licensed** guest does not by itself prove a current connection to NVIDIA DLS
 
 ## Compatibility
 
-Blast Pulse 1.3.0 for Windows x64.
+Blast Pulse 1.4.0 for Windows x64.
 
-The Windows build and automated regression suite passed, including worker-identity fallback, datagram updates, file rotation/truncation, reconnect boundaries and the existing desktop, DPI, language and NVIDIA checks. User testing confirmed all three datagram values at 1372 bytes in a live Horizon session. A real mid-session size change and the corrected binary’s reconnect behavior have not yet been manually confirmed. Broader GPO, Explorer-restart and multi-user coverage remains limited.
+The 1.4 Windows build and automated regression suite passed. A Horizon VDI test of the preceding functionally equivalent test build confirmed BEAT (UDP), a GOOD-to-OK change, English/German display and reconnect with the same worker. The final 1.4 executable has not itself been tested in that VDI. Other Agent builds, a worker replacement, TCP/POOR transitions and multi-user operation remain unverified in live use.
 
 The NVIDIA display was checked in a Horizon vGPU session with an NVIDIA A2-16Q, driver 581.42 and 192 DPI. All six NVIDIA values were visible; the driver reported **Unlicensed**. Other license states and multi-GPU layouts have not yet been checked on real hardware. Automated Windows regression checks passed for the 1.2 source revision, covering license-state handling, query timeouts, English/German text and DPI layouts.
 
