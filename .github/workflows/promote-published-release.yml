@@ -1,0 +1,79 @@
+name: Verify package and update front page after publication
+
+on:
+  push:
+    branches: [prepare/1.5.0]
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: blastpulse-release-1.5
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    if: github.event_name == 'push' || (github.event.release.tag_name == 'v1.5.0' && !github.event.release.prerelease)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify prepared package
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum -c SHA256SUMS.txt
+          unzip -t BlastPulse-1.5.0-win-x64.zip
+          python3 - <<'PY'
+          import hashlib, json, pathlib, zipfile
+          root = pathlib.Path('.')
+          info = json.loads((root / 'VERSION.json').read_text())
+          assert info['version'] == '1.5.0'
+          assert hashlib.sha256((root / 'BlastPulse.exe').read_bytes()).hexdigest() == info['executableSha256']
+          assert json.loads((root / 'config.json').read_text())['ShowTeamsChannel'] is False
+          with zipfile.ZipFile(root / 'BlastPulse-1.5.0-win-x64.zip') as archive:
+              for line in archive.read('SHA256SUMS.txt').decode().splitlines():
+                  expected, name = line.split('  ', 1)
+                  assert hashlib.sha256(archive.read(name)).hexdigest() == expected, name
+              assert archive.read('BlastPulse.exe') == (root / 'BlastPulse.exe').read_bytes()
+          for name in ('README.md', 'README.de.md'):
+              text = (root / name).read_text()
+              assert text.index('screenshot-nvidia.png') < text.index('screenshot-desktop.png') < text.index('screenshot-teams-slimcore.png')
+              assert '1.4.0-win-x64' not in text
+          PY
+      - name: Verify published assets match the prepared package
+        if: github.event_name == 'release'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          set -euo pipefail
+          asset_dir="$RUNNER_TEMP/published-assets"
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --dir "$asset_dir" \
+            --pattern BlastPulse.exe --pattern config.json --pattern BlastPulse-1.5.0-win-x64.zip --pattern SHA256SUMS.txt
+          cmp SHA256SUMS.txt "$asset_dir/SHA256SUMS.txt"
+          cd "$asset_dir"
+          sha256sum -c SHA256SUMS.txt
+  promote:
+    needs: verify
+    if: github.event_name == 'release' && github.event.release.tag_name == 'v1.5.0' && !github.event.release.prerelease
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Fast-forward the front page to the published release
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor origin/main HEAD
+          git push origin HEAD:refs/heads/main

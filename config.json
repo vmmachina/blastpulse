@@ -6,5 +6,6 @@
   "BottomOffset": 150,
   "FontSize": 11,
   "FontFamily": "Segoe UI",
-  "Language": "en"
+  "Language": "en",
+  "ShowTeamsChannel": false
 }

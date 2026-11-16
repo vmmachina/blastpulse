@@ -1,0 +1,8 @@
+{
+  "version": "1.5.0",
+  "sourceCommit": "3228800724418c512fa7d4f917af9043dda38b6e",
+  "windowsBuildRun": "https://github.com/vmmachina/blastpulse-source/actions/runs/43884193049",
+  "executableSha256": "1651e2bd0a6dfc8c1c28464955ad5afd5a7b01d8b2039c7633bf2aebfa2a351f",
+  "teamsDefaultEnabled": false,
+  "vdiValidation": "User-assisted SlimCore test build: live display, stopped/reopened Teams and same-session Horizon reconnect. Final NVIDIA correction covered by controlled Windows tests."
+}

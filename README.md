@@ -1,20 +1,20 @@
 <div align="center">
 <p><img src="assets/banner-en.png" alt="Blast Pulse — Omnissa Horizon" width="1200"></p>
 <p>by <strong>Stefan Gourguis</strong> · Omnissa Tech Insider · solvig. GmbH · solvig.ch</p>
-<p><kbd>Version 1.4.0</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.8</kbd></p>
+<p><kbd>Version 1.5.0</kbd> &nbsp; <kbd>Windows x64</kbd> &nbsp; <kbd>.NET Framework 4.8</kbd></p>
 <p><a href="https://github.com/vmmachina/blastpulse/blob/main/README.md"><kbd>English</kbd></a> | <a href="https://github.com/vmmachina/blastpulse/blob/main/README.de.md"><kbd>Deutsch</kbd></a></p>
-<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.4.0/BlastPulse.exe"><img src="assets/download-exe-en.png" alt="Download EXE" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.4.0/BlastPulse-1.4.0-win-x64.zip"><img src="assets/download-zip-en.png" alt="Download Windows ZIP" width="280"></a></p>
+<p><a href="https://github.com/vmmachina/blastpulse/releases/download/v1.5.0/BlastPulse.exe"><img src="assets/download-exe-en.png" alt="Download EXE" width="280"></a> &nbsp; <a href="https://github.com/vmmachina/blastpulse/releases/download/v1.5.0/BlastPulse-1.5.0-win-x64.zip"><img src="assets/download-zip-en.png" alt="Download Windows ZIP" width="280"></a></p>
 </div>
 
 The idea came from a simple inconvenience: checking a connection meant repeatedly opening the original Horizon Blast tray icon at the bottom right of the screen. Blast Pulse keeps the relevant information visible on the desktop, so you can follow your session while you work.
 
 The compact display shows connection details alongside Blast FPS, round-trip time (RTT) and uplink packet loss. Live counters refresh every second by default. It appears as a transparent layer at the bottom right of the primary desktop, beneath ordinary application windows. Your wallpaper remains the background; it is not rewritten for each update.
 
-## Latest release — 1.4.0
+## Latest release — 1.5.0
 
-- Displays connection transport and quality directly from the supported Horizon Agent build, without opening the Horizon Blast tray menu.
-- Updates GOOD, OK and POOR as reported by the Agent and shows when the values were checked.
-- Associates connection information with the active session and connection; a matching log entry can be used when a direct value is unavailable.
+- Optional automatic Teams connection reports, including SlimCore, with original source and check times.
+- Separate Teams channel activity and historical diagnostic imports; connection/process checks prevent accepting a report from before the current context.
+- NVIDIA sections stay hidden until a GPU has actually been observed, avoiding transient sections on desktops without NVIDIA.
 
 [Downloads and full release notes](https://github.com/vmmachina/blastpulse/releases/latest)
 
@@ -28,11 +28,15 @@ NVIDIA GPU and licensing information, shown at 192 DPI. The license state comes 
 
 Horizon session during video playback. Metrics and log timestamps vary by session.
 
+<p align="center"><img src="assets/screenshot-teams-slimcore.png" alt="Blast Pulse 1.5 Teams-reported SlimCore connection with original and checked times" width="900"></p>
+
+Automatic Teams-reported SlimCore connection, shown separately from channel activity and an older imported diagnostic.
+
 ## Download and start
 
-Download [Blast Pulse 1.4.0 for Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.4.0/BlastPulse-1.4.0-win-x64.zip). The package contains the application, an example configuration and the release notes.
+Download [Blast Pulse 1.5.0 for Windows x64 (ZIP)](https://github.com/vmmachina/blastpulse/releases/download/v1.5.0/BlastPulse-1.5.0-win-x64.zip). The package contains the application, an example configuration and the release notes.
 
-The [release page](https://github.com/vmmachina/blastpulse/releases/tag/v1.4.0) also offers the [standalone EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.4.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.4.0/config.json) and [SHA-256 checksums](https://github.com/vmmachina/blastpulse/releases/download/v1.4.0/SHA256SUMS.txt).
+The [release page](https://github.com/vmmachina/blastpulse/releases/tag/v1.5.0) also offers the [standalone EXE](https://github.com/vmmachina/blastpulse/releases/download/v1.5.0/BlastPulse.exe), [config.json](https://github.com/vmmachina/blastpulse/releases/download/v1.5.0/config.json) and [SHA-256 checksums](https://github.com/vmmachina/blastpulse/releases/download/v1.5.0/SHA256SUMS.txt).
 
 You need Windows 10/11 x64, .NET Framework 4.8 and an active Horizon Blast session with readable session counters and logs. The application is unsigned.
 
@@ -56,6 +60,7 @@ Place `config.json` beside `BlastPulse.exe` and restart Blast Pulse after editin
 | `FontSize` | `11` | Preferred text size, 10–22 points |
 | `FontFamily` | `"Segoe UI"` | Installed Windows font; Windows substitutes a font if unavailable |
 | `Language` | `"en"` | Initial language: `"en"` or `"de"` |
+| `ShowTeamsChannel` | `false` | Enable the optional Teams section in the normal desktop display; `true` or `false` |
 
 Panel width, margins and text scale together with the current Windows DPI. The pixel settings above refer to 100% scaling (96 DPI). Resolution and DPI changes are picked up while the application is running; editing `config.json` still requires a restart. Long labels, values and footer lines wrap, and the display height is measured from their actual text. If the desktop is too small, the text size is reduced only as far as needed.
 
@@ -133,6 +138,33 @@ The incremental reader handles complete appended UTF-8/UTF-16 lines and checks f
 
 For a one-time JSON export, use `BlastPulse.exe -datagram-json "C:\Path\datagram.json"` within the target user's Horizon session. It writes a snapshot and exits. The export includes computer/session identifiers, worker and connection context, state and per-value source timestamps; consumers should check those fields. An unavailable size is `null`. `DiscoveryMtuBytes` remains `null`; logged search defaults are not proof that discovery completed. Blast Pulse sends no MTU probes and changes no network settings.
 
+## Microsoft Teams and SlimCore
+
+The Teams section is optional. Add `"ShowTeamsChannel": true` to `config.json` beside the EXE and restart Blast Pulse. Without this setting it remains hidden and is not polled. Use the normal desktop mode, without `-preview` or `-apply`.
+
+Blast Pulse reads the user-local Teams monitoring file every five seconds:
+
+```text
+%LOCALAPPDATA%\Packages\MSTeams_8wekyb3d8bbwe\LocalCache\Microsoft\MSTeams\tfw\vdi_connection_info.json
+```
+
+This uses [Microsoft's documented Teams monitoring data](https://learn.microsoft.com/en-us/microsoftteams/vdi-2#monitoring-api). Availability depends on the installed Teams version and a readable file. Blast Pulse does not install Teams, the endpoint plug-in or SlimCore, and does not alter optimization policies.
+
+| Display | Meaning |
+| --- | --- |
+| SlimCore connection reported | Teams reports `remote` / `3200`; the local process and connection checks accept the record. |
+| SlimCore fallback reported | Teams reports `local` / `3200`. |
+| WebRTC reported; state unconfirmed | Teams reports `local` / `3100`; this does not establish whether WebRTC media optimization is active. |
+| Teams not running / Not determined | Teams is stopped, or no matching valid report is available; this is not proof of an unoptimized connection. |
+
+The display keeps the original **Teams report time** separate from **Checked**. A connection event is not a heartbeat. Reports must follow the current Teams process start and Windows connection boundary; context changes, failed reads, conflicts and expired collected samples invalidate the positive display. Multiple sessions of the same Windows account are outside the supported attribution scope: these user-local records contain no validated Windows session/process identity. Observed Teams processes in another Windows session suppress positive attribution conservatively.
+
+**Teams channel** is a separate observation from the session/worker-bound Horizon virtual-channel WMI counters. Observed traffic is not proof of media optimization. Collection runs in a bounded background process so a delayed provider does not block desktop updates.
+
+The tray menu also offers **Import Teams diagnosis…** for supported TXT/ZIP diagnostics, including nested Weblogs, and **Clear imported Teams diagnosis**. A supported SlimCore confirmation appears under **Last confirmed (diagnostic)** with its original event time and any later detected disconnect. It is stored as selected evidence in `%LOCALAPPDATA%\BlastPulse\teams-diagnostic.json`, not as a raw diagnostic archive, and remains explicitly historical. It never overrides the automatic report.
+
+Teams monitoring retains only the selected mode, stack and times from its source; it does not export raw monitoring data or account/device/call details. The existing datagram JSON export and wallpaper preview/apply modes do not include the Teams section. The reported connection is not an audio/video health test.
+
 ### NVIDIA data
 
 The NVIDIA section reads the installed driver's **NVML** library locally. It does not launch `nvidia-smi`, query the DLS server or change licensing settings. No NVIDIA library is bundled with Blast Pulse.
@@ -147,13 +179,17 @@ The NVIDIA section reads the installed driver's **NVML** library locally. It doe
 
 A supported, enabled feature is shown as **Licensed** or **Unlicensed**, as reported by the driver. Disabled features and unsupported licensing are identified separately. An unavailable query or a sample older than 90 seconds produces **Unknown**, rather than a guessed license state. The query runs in a separate process with a 10-second timeout so a stalled driver call does not hold up Blast sampling.
 
+The desktop NVIDIA section stays hidden until a positive GPU count has been read. An initial timeout/error, no driver or zero GPUs cannot make it appear. Once a GPU has been observed, later query failures keep a visible unknown state; they do not preserve a positive license state. A new successful query restores the current driver-reported information.
+
 A **Licensed** guest does not by itself prove a current connection to NVIDIA DLS; it describes the guest driver's reported license state. Blast Pulse does not read license-token files or call UUID, serial-number or license-server administration APIs. Tokens, GPU UUIDs, serial numbers and server addresses are not included in the display.
 
 ## Compatibility
 
-Blast Pulse 1.4.0 for Windows x64.
+Blast Pulse 1.5.0 for Windows x64.
 
-The 1.4 Windows build and automated regression suite passed. A Horizon VDI test of the preceding functionally equivalent test build confirmed BEAT (UDP), a GOOD-to-OK change, English/German display and reconnect with the same worker. The final 1.4 executable has not itself been tested in that VDI. Other Agent builds, a worker replacement, TCP/POOR transitions and multi-user operation remain unverified in live use.
+For 1.5, user-assisted checks of the preceding functionally equivalent Teams test build in a real Horizon VDI confirmed automatic SlimCore display, the stopped state, reopening Teams with a fresh report and a fresh report after reconnecting the same Windows session. The reconnect gap itself was not recorded live. WebRTC/fallback, multiple same-account sessions and audio/video call health were not validated in that VDI. The final 1.5 Windows build is checked separately by the automated regression suite; its NVIDIA no-GPU correction is covered by controlled state-to-renderer tests.
+
+The earlier 1.4 Windows build and automated regression suite passed. A Horizon VDI test of the preceding functionally equivalent test build confirmed BEAT (UDP), a GOOD-to-OK change, English/German display and reconnect with the same worker. The final 1.4 executable has not itself been tested in that VDI. Other Agent builds, a worker replacement, TCP/POOR transitions and multi-user operation remain unverified in live use.
 
 The NVIDIA display was checked in a Horizon vGPU session with an NVIDIA A2-16Q, driver 581.42 and 192 DPI. All six NVIDIA values were visible; the driver reported **Unlicensed**. Other license states and multi-GPU layouts have not yet been checked on real hardware. Automated Windows regression checks passed for the 1.2 source revision, covering license-state handling, query timeouts, English/German text and DPI layouts.
 

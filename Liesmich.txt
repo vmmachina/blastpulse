@@ -1,26 +1,31 @@
 Blast Pulse - by Stefan Gourguis
-Version 1.4.0
+Version 1.5.0
 
-Horizon-Blast-Verbindungsdaten direkt auf dem Desktop im Blick.
-
-Neu in 1.4
-  Verbindungstransport und Qualität können beim getesteten Horizon-Agent-Build
-  direkt abgefragt werden, ohne das Horizon-Blast-Menü zu öffnen. Die Anzeige
-  zeigt den Abfragezeitpunkt und hängt keinen alten Log-Score an einen direkten
-  Qualitätsstatus. Bei fehlendem direktem Wert kann eine passende Logbeobachtung
-  mit eigenem Zeitpunkt verwendet werden.
+Neu seit 1.4
+  Optionaler Microsoft-Teams-Bereich mit automatischer Verbindungsmeldung,
+  Originalzeit und Abfragezeit. Separat: Teams-Kanalaktivität und importierte
+  historische SlimCore-Diagnosen. Prozess- und Verbindungsprüfungen begrenzen
+  die Zuordnung; fehlende Daten beweisen keine unoptimierte Verbindung.
+  Der NVIDIA-Bereich erscheint erst nach tatsächlich erkannter GPU.
 
 Start
   ZIP entpacken und BlastPulse.exe in der Horizon-Blast-Sitzung starten.
-  Voraussetzungen: Windows 10/11 x64, .NET Framework 4.8, lesbare
-  Sitzungszähler und Logs. Die Anwendung ist unsigniert.
+  Windows 10/11 x64, .NET Framework 4.8; Anwendung unsigniert.
+  Bestehende EXE vorher über das Tray-Menü beenden. Eigene Konfiguration erhalten.
 
-Konfiguration und Informationen
-  Die optionale config.json liegt neben der EXE. Die ausführlichen Anleitungen
-  und Datenquellen auf Deutsch und Englisch stehen auf GitHub:
+Teams aktivieren
+  In config.json neben der EXE "ShowTeamsChannel": true setzen und neu starten.
+  Standard ist false. Normalen Desktop-Modus ohne -preview/-apply verwenden.
+  Teams muss die benutzerlokale Monitoringdatei bereitstellen.
+
+Grenzen
+  Gemeldete Verbindung ist keine Audio-/Video-Funktionsprüfung. Mehrere
+  Sitzungen desselben Windows-Kontos sind nicht unterstützt. Diagnoseimporte
+  sind historische Belege, kein aktueller Status. Wallpaper-Modi und der
+  bisherige Datagramm-JSON-Export enthalten den Teams-Bereich nicht.
+  Direkter Horizon-Abruf nutzt die interne Agent-Schnittstelle des getesteten
+  Builds; andere Builds verwenden verfügbare passende Logbeobachtungen.
+
+Dokumentation und vollständige Änderungen
+  README.md (English), README.de.md (Deutsch), RELEASE-NOTES.md
   https://github.com/vmmachina/blastpulse
-
-  Der direkte Abruf nutzt eine interne Agent-Schnittstelle, die sich ändern
-  kann. Andere Agent-Builds verwenden verfügbare passende Logeinträge.
-  Der Windows-Build bestand automatisierte Prüfungen; ein vorheriger
-  funktionsgleicher Testbuild wurde in einer Horizon-VDI geprüft.
