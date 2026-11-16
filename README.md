@@ -16,7 +16,7 @@ The compact display shows connection details alongside Blast FPS, round-trip tim
 - Separate Teams channel activity and historical diagnostic imports; connection/process checks prevent accepting a report from before the current context.
 - NVIDIA sections stay hidden until a GPU has actually been observed, avoiding transient sections on desktops without NVIDIA.
 
-[Downloads and full release notes](https://github.com/vmmachina/blastpulse/releases/latest)
+[Downloads and full release notes](https://github.com/vmmachina/blastpulse/releases/latest) · [Detailed changes since 1.4](RELEASE-NOTES.md)
 
 ## In action
 

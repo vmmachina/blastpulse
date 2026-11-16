@@ -16,7 +16,7 @@ Die kompakte Anzeige zeigt Verbindungsdetails sowie Blast-FPS, Antwortzeit (RTT)
 - Getrennte Teams-Kanalaktivität und historische Diagnoseimporte; Prozess- und Verbindungsprüfungen begrenzen die Zuordnung auf den aktuellen Kontext.
 - NVIDIA-Bereiche bleiben verborgen, bis tatsächlich eine GPU erkannt wurde; dadurch erscheinen auf Desktops ohne NVIDIA keine vorübergehenden Fehlerbereiche.
 
-[Downloads und vollständige Release Notes](https://github.com/vmmachina/blastpulse/releases/latest)
+[Downloads und vollständige Release Notes](https://github.com/vmmachina/blastpulse/releases/latest) · [Alle Änderungen seit 1.4 im Detail (Englisch)](RELEASE-NOTES.md)
 
 ## Im Einsatz
 
